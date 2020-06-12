@@ -27,9 +27,6 @@
 
 <h1>Welcome</h1>
 
-${quote.quote}
-${quote.author}
-
 </main>
 
 </body>

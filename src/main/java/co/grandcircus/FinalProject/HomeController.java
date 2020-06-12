@@ -41,9 +41,12 @@ public class HomeController {
 	@RequestMapping("/")
 	public String home (Model model) {
 		
-		Quote quoteOfDay = quoteService.quoteOfTheDay();
+		//for the header
+		boolean loggedIn = Methods.checkLogin(session);
 		
-		model.addAttribute("quote", quoteOfDay);
+		
+		//for the header
+		model.addAttribute("loggedin", loggedIn);
 		
 		return "index";
 	}
