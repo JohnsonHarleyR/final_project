@@ -1,4 +1,4 @@
-package co.grandcircus.FinalProject.wrongQuoteApi;
+package co.grandcircus.FinalProject.QuoteApi;
 
 public class Success {
 	

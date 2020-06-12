@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import co.grandcircus.FinalProject.wrongQuoteApi.Quote;
-import co.grandcircus.FinalProject.wrongQuoteApi.QuoteService;
+import co.grandcircus.FinalProject.QuoteApi.Quote;
+import co.grandcircus.FinalProject.QuoteApi.QuoteService;
 
 @Controller
 public class ApiController {
