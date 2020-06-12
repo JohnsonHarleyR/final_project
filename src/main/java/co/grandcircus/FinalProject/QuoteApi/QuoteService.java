@@ -1,4 +1,4 @@
-package co.grandcircus.FinalProject.wrongQuoteApi;
+package co.grandcircus.FinalProject.QuoteApi;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
