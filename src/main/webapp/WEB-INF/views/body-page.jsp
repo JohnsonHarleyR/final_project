@@ -11,6 +11,13 @@
 <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
+
+<!-- Header -->
+<section class="header">
+<%@ include file="partials/header.jsp" %>
+</section>
+
+
 <c:forEach var= "excercise" items="${excercises}">
 <h1>${excercise.nf_calories }</h1>
 

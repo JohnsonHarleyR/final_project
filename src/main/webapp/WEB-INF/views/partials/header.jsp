@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -66,7 +66,7 @@
 			<a class="nav-link" href="/soul">Soul</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="/"><img height=25px src="/house_icon.png"></a>
+			<a class="nav-link" href="/"><img height=30px src="/house_icon.png"></a>
 		</li>
 		
 	</ul>

@@ -11,6 +11,8 @@ import co.grandcircus.FinalProject.ArticleApi.ArticleService;
 import co.grandcircus.FinalProject.ArticleApi.Result;
 import java.util.Random;
 
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 public class MindController {
@@ -18,9 +20,14 @@ public class MindController {
 	@Autowired
 	private ArticleService articleService;
 	
+	@Autowired
+	private HttpSession session;
+	
 
 	@RequestMapping("/mind")
 	public String mindPage(Model model) {
+		
+		boolean loggedIn = Methods.checkLogin(session);
 		
 		Result[] results = articleService.getArticlesByTopic("anxiety"); 
 		
@@ -36,6 +43,8 @@ public class MindController {
 	    model.addAttribute("result",result);
 		             
 		System.out.println(result.toString());
+		
+		model.addAttribute("loggedin", loggedIn);
 
 		return "mind";
 		
