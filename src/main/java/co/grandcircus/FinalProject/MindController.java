@@ -4,38 +4,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import co.grandcircus.FinalProject.ArticleApi.ArticleService;
 import co.grandcircus.FinalProject.ArticleApi.Result;
-import co.grandcircus.FinalProject.QuoteApi.Quote;
-import co.grandcircus.FinalProject.QuoteApi.QuoteService;
+import java.util.Random;
+
 
 @Controller
-public class ApiController {
-	
-	@Autowired
-	private QuoteService quoteService;
-	
+public class MindController {
 	
 	@Autowired
 	private ArticleService articleService;
-
-	@RequestMapping("/")
-	public String home (Model model) {
-		
-		Quote quoteOfDay = quoteService.quoteOfTheDay();
-		
-		model.addAttribute("quote", quoteOfDay);
-		
-		return "index";
-	}
+	
+	
 	
 	@RequestMapping("/mind")
 	public String mindPage(Model model) {
 		
-		Result[] results = articleService.getArticlesByTopic("depression"); 
+		Result[] results = articleService.getArticlesByTopic("anxiety"); 
 		
-	    Result result = results[1];
+		//Initializes random
+		Random rand = new Random();
+		
+	    int length = results.length;
+		
+	    int articleNumber = rand.nextInt(length);
+		
+		Result result = results[articleNumber];
 	    
 	    model.addAttribute("result",result);
 		             
@@ -44,7 +38,6 @@ public class ApiController {
 		return "mind";
 		
 	}
-	
 	
 	
 }

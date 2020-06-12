@@ -22,6 +22,10 @@ public class ArticleService {
 			return articleArray;
 			
 		}
+		
+		//tags id
+		//https://tools.cdc.gov/api/v2/resources/tags/{tagID}/related
+		
 //		
 //		//Get all categories
 //		public Categories getCategories() {
