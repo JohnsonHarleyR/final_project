@@ -83,8 +83,6 @@
 					<tr>
 					<td>
 					<button id="su" style="float: left" type="submit" class="btn btn-primary btn-lg">Sign Up</button>
-					<a href="/login"><button type="button" id="si" style="float: right;"
-					 class="btn btn-primary btn-lg">Sign In</button></a>
 					
 					</td>
 					</tr>
