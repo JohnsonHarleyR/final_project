@@ -25,9 +25,10 @@
 <!-- MainBody -->
 <main class="container">
 
-<h1>Test:</h1>
-${affirmation}
+<h1>Welcome</h1>
+
 ${quote.quote}
+${quote.author}
 
 </main>
 

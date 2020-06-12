@@ -22,8 +22,15 @@
 <%@ include file="partials/header.jsp" %>
 </section>
 
+
+
 <!-- MainBody -->
 <main class="container">
+
+${affirmation}
+<br>
+
+
 
 </main>
 
