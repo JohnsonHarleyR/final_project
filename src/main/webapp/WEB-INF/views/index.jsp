@@ -19,7 +19,7 @@
 
 <!-- Header -->
 <section class="header">
-
+<%@ include file="partials/header.jsp" %>
 </section>
 
 <!-- MainBody -->
@@ -27,6 +27,7 @@
 
 <h1>Test:</h1>
 ${affirmation}
+${quote.quote}
 
 </main>
 

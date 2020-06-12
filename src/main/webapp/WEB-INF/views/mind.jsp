@@ -8,6 +8,11 @@
 </head>
 <body>
 
+<!-- Header -->
+<section class="header">
+<%@ include file="partials/header.jsp" %>
+</section>
+
 ${result.name}<br>
 ${result.description}<br>
 ${result.sourceUrl}<br>

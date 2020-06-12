@@ -19,7 +19,7 @@
 
 <!-- Header -->
 <section class="header">
-
+<%@ include file="partials/header.jsp" %>
 </section>
 
 <!-- MainBody -->
@@ -82,9 +82,9 @@
 					
 					<tr>
 					<td>
-					<button id="su" style="float: left" type="submit" class="btn btn-dark btn-lg">Sign Up</button>
+					<button id="su" style="float: left" type="submit" class="btn btn-primary btn-lg">Sign Up</button>
 					<a href="/login"><button type="button" id="si" style="float: right;"
-					 class="btn btn-dark btn-lg">Sign In</button></a>
+					 class="btn btn-primary btn-lg">Sign In</button></a>
 					
 					</td>
 					</tr>
