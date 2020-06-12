@@ -30,16 +30,15 @@
 <p>
 We all need help sometimes, there is no shame in that. No matter what life may bring, 
 you deserve to be happy and healthy. That is why we hope to provide you with more of 
-the love and support you may need.
+the love and support you need.
 </p>
 
 <p>
-Here, you will find resources, articles, and affirmations to help you stay healthy, as 
-well as social support from others who understand what you are going through. This is 
+Here, you will find resources, articles, and affirmations to help you stay healthy. You'll 
+also find social support from others who understand what you are going through. This is 
 a safe space for you to grow and we are glad you're here!</b>
 </p>
 
-<br>
 <br>
 
 <p>
