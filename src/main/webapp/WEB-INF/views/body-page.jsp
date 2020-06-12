@@ -11,14 +11,19 @@
 <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
-<c:forEach var= "excercise" items="${excercises }">
-<h1>${excercise.name }</h1>
+<c:forEach var= "excercise" items="${excercises}">
+<h1>${excercise.nf_calories }</h1>
 
 
 </c:forEach>
 
-
-
+	<form action = "/body" name = "exerciseForm" method = "post">
+	
+	          <textarea name = "userInput" rows = "3" cols = "80">Your text here</textarea>
+					<input type="submit" value="Submit">
+	
+	</form>
+	
 
 </body>
 </html>

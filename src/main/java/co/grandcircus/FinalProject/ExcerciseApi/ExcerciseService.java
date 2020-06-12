@@ -13,7 +13,7 @@ public class ExcerciseService {
 	private RestTemplate rest = new RestTemplate();
 	
 	
-	public ExcerciseTracker getTest() {
+	public ExcerciseTracker getTest(String userInput) {
 		
 		String url = "https://trackapi.nutritionix.com/v2/natural/exercise";
 		
@@ -22,10 +22,10 @@ public class ExcerciseService {
 		headers.add("x-app-id", "16a5577a");
 		headers.add("x-remote-user-id", "0");
 		
-		Map<String, String> personJsonObject = new HashMap<>(); 
-		personJsonObject.put("query", "ran 3 miles");
+		Map<String, Object> personJsonObject = new HashMap<>(); 
+		personJsonObject.put("query", userInput);
 		
-		HttpEntity<Map<String, String>> entity = new HttpEntity<>(personJsonObject,headers);
+		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(personJsonObject,headers);
 		
 		ExcerciseTracker response = rest.postForObject(url, entity, ExcerciseTracker.class);
 		System.out.println(response);
