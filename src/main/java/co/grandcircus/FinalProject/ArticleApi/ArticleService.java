@@ -9,37 +9,41 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ArticleService {
 		
-		private RestTemplate rest = new RestTemplate();
+	private RestTemplate rest = new RestTemplate();
 
-		public Result[] getArticlesByTopic(String topic) {
-			
-			String url = "https://tools.cdc.gov/api/v2/resources/media?topic={topic}";
-			
-			TopicResponse response = rest.getForObject(url, TopicResponse.class, topic);
-			
-			Result[] articleArray = response.getResults();
-			
-			return articleArray;
-			
-		}
+	public Result[] getArticlesByTopic(String topic) {
 		
-		//tags id
-		//https://tools.cdc.gov/api/v2/resources/tags/{tagID}/related
+		String url = "https://tools.cdc.gov/api/v2/resources/media?topic={topic}";
 		
-//		
-//		//Get all categories
-//		public Categories getCategories() {
-//			
-//			String url = "http://quotes.rest/qod/categories.json";
-//			
-//			QuoteResponse response = rest.getForObject(url, QuoteResponse.class);
-//			
-//			return response.getContents().getCategories();
-//			
-//		}
-//		
-//		
+		TopicResponse response = rest.getForObject(url, TopicResponse.class, topic);
 		
-
+		Result[] articleArray = response.getResults();
+		
+		return articleArray;
+		
 	}
+	
+	//By topic id
+	//DOES NOT WORK
+	public Result[] getArticlesByTopicId(Integer id) {
+		
+		String url = "https://tools.cdc.gov/api/v2/resources/media?topicids={id}";
+		
+		TopicResponse response = rest.getForObject(url, TopicResponse.class, id);
+		
+		Result[] articleArray = response.getResults();
+		
+		return articleArray;
+		
+		
+	}
+	
+
+	
+	//tags id
+	//https://tools.cdc.gov/api/v2/resources/tags/{tagID}/related
+	
+	
+
+}
 	

@@ -37,7 +37,8 @@ public class HomeController {
 	private String infoMessage = "Here is your user information.";
 	private String editMessage = "Edit your user info here.";
 	
-
+	
+	//Displays encouraging welcome message - what do you think?
 	@RequestMapping("/")
 	public String home (Model model) {
 		
@@ -51,7 +52,15 @@ public class HomeController {
 		return "index";
 	}
 	
-	
+	//For emergency numbers
+	@RequestMapping("/emergency")
+	public String emergency(Model model) {
+		
+		boolean loggedIn = Methods.checkLogin(session);
+		model.addAttribute("loggedin", loggedIn);
+		
+		return "emergency";
+	}
 	
 	
 	

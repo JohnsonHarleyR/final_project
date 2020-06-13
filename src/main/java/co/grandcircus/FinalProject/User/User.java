@@ -19,6 +19,7 @@ public class User implements Serializable {
 	private String email;
 	private String password;
 	private String name;
+	private Integer points;
 	
 	public User() {
 		
@@ -63,11 +64,23 @@ public class User implements Serializable {
 		this.name = name;
 	}
 	
+	
+	
+	public Integer getPoints() {
+		return points;
+	}
+
+	public void setPoints(Integer points) {
+		this.points = points;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", email=" + email +
-				", password=" + password + ", name=" + name + "]";
+		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", name="
+				+ name + ", points=" + points + "]";
 	}
+
+	
 	
 
 }
