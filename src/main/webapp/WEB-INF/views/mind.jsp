@@ -13,12 +13,22 @@
 <%@ include file="partials/header.jsp" %>
 </section>
 
+<section>
 ${result.name}<br>
 ${result.description}<br>
 ${result.sourceUrl}<br>
+</section>
 
-
-
+<!-- Testing Area - temporary -->
+<section>
+<br>
+<br>
+<b>Testing Area</b>
+<br>
+${time}
+<br>
+${ftime}
+</section>
 
 
 

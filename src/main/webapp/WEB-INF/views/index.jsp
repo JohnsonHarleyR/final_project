@@ -25,7 +25,7 @@
 <!-- MainBody -->
 <main class="container">
 
-<h1>Welcome,<br>You are not alone!</h1>
+<h1>Welcome,<br>you are not alone!</h1>
 
 <p>
 We all need help sometimes, there is no shame in that. No matter what life may bring, 
