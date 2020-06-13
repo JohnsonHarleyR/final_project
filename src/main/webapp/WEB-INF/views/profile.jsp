@@ -26,6 +26,9 @@
 <main class="container">
 <h1>${user.name}'s Profile</h1>
 
+<section id="user-options">
+<a href="/settings">Settings</a>
+</section>
 
 
 </main>
