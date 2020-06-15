@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -13,7 +13,7 @@
 <link href="/style.css" rel="stylesheet" />
 
 <meta charset="ISO-8859-1">
-<title>${listname}</title>
+<title>Favorite Affirmations</title>
 </head>
 <body>
 
@@ -26,7 +26,22 @@
 <main class="container">
 
 
-${listname} List
+<section id="list">
+	<h1>Favorite Affirmations</h1>
+	<a href="/user">Go back</a>
+	<c:forEach var="item" items="${list}">
+		
+		<h2></h2>
+		${item.affirmation}
+		<br>
+		<i>${item.datetime}</i> <a href="/delete/affirmation?id=${item.id}&url=/list/affirmations">
+		Delete</a>
+		
+		<br>
+	</c:forEach>
+
+
+</section>
 
 
 </main>

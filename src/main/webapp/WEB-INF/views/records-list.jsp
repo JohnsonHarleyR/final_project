@@ -13,7 +13,7 @@
 <link href="/style.css" rel="stylesheet" />
 
 <meta charset="ISO-8859-1">
-<title>User Page</title>
+<title>List of Records</title>
 </head>
 <body>
 
@@ -24,67 +24,39 @@
 
 <!-- MainBody -->
 <main class="container">
-<h1>${user.name}'s Page</h1>
 
-<section id="user-options">
-	<a href="/settings">Settings</a>
-</section>
 
-<section id="record-events">
+<section id="list">
+	<h1>List of Records</h1>
+	<a href="/user">Go back</a>
+	
 	<h2>Happy Reminders</h2>
 	One way to stay positive is to record what makes you feel happy. This could be an event, 
 	a compliment from a stranger, or an uplifting saying.<br> 
 	Whatever it may be, record it here for when you need a 
 	pick-me-up!
 	
-	<form action="record" method="post">
+	<form action="/record" method="post">
 	<textarea name="text" rows="5" cols="50" placeholder="What made you smile?" required></textarea>
 	
 	<br>
-	<input type="hidden" name="list" value="no"/>
+	<input type="hidden" name="list" value="yes"/>
 	<button type="submit">Add</button>
 	</form>
 	
-	<h3>Past Records</h3>
-	<c:forEach var="record" items="${records}" end="2">
+	<c:forEach var="item" items="${list}">
 		
-		
-		${record.text}
+		<h2></h2>
+		${item.text}
 		<br>
-		<i>${record.datetime}</i> <a href="/delete/record?id=${record.id}&url=/user">
+		<i>${item.datetime}</i> <a href="/delete/record?id=${item.id}&url=/list/records">
 		Delete</a>
 		
 		<br>
 	</c:forEach>
-	
-	<!-- Form to pass list into "display more" page -->
-	<form action="/list/records" method="post">
-	<button type="submit">See More</button>
-	</form>
+
 
 </section>
-
-
-<section id="affirmations">
-	<h2>Favorite Affirmations</h2>
-	<c:forEach var="affirmation" items="${affirmations}" end="2">
-		
-		
-		${affirmation.affirmation}
-		<br>
-		<i>${affirmation.datetime}</i> <a href="/delete/affirmation?id=${affirmation.id}&url=/user">
-		Delete</a>
-		
-		<br>
-	</c:forEach>
-	
-	
-	<!-- Form to pass list into "display more" page -->
-	<form action="/list/affirmations" method="post">
-	<button type="submit">See More</button>
-	</form>
-</section>
-
 
 
 </main>

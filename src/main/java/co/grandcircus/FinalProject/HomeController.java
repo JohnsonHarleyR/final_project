@@ -1,5 +1,8 @@
 package co.grandcircus.FinalProject;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.grandcircus.FinalProject.Favorites.AffirmationDao;
 import co.grandcircus.FinalProject.Favorites.FavAffirmation;
+import co.grandcircus.FinalProject.Favorites.Record;
+import co.grandcircus.FinalProject.Favorites.RecordDao;
 import co.grandcircus.FinalProject.QuoteApi.QuoteService;
 import co.grandcircus.FinalProject.User.User;
 import co.grandcircus.FinalProject.User.UserDao;
@@ -37,6 +42,9 @@ public class HomeController {
 	
 	@Autowired
 	private AffirmationDao affirmationRepo;
+	
+	@Autowired
+	private RecordDao recordRepo;
 
 	private String loginMessage = "Please enter your username and password.";
 	private String signUpMessage = "Please enter the following information.";
@@ -63,7 +71,7 @@ public class HomeController {
 		//for the header
 		boolean loggedIn = Methods.checkLogin(session);
 		
-		
+		              
 		//for the header
 		model.addAttribute("loggedin", loggedIn);
 		
@@ -88,6 +96,16 @@ public class HomeController {
 		//Get list of their favorite Affirmations
 		List<FavAffirmation> affirmations =
 				affirmationRepo.findByUserId(user.getId());
+		//Sort and then reverse its order so newest is at the top
+		Collections.sort(affirmations);
+		Collections.reverse(affirmations);
+		
+		//Get list of their records
+		List<Record> records =
+				recordRepo.findByUserId(user.getId());
+		//Sort and then reverse its order so newest is at the top
+		Collections.sort(records);
+		Collections.reverse(records);
 		
 		
 				
@@ -96,14 +114,158 @@ public class HomeController {
 		model.addAttribute("loggedin", loggedIn);
 		//Add user
 		model.addAttribute("user", user);
+		
 		//Add affirmation list
 		model.addAttribute("affirmations", affirmations);
+		//Add record list
+		model.addAttribute("records", records);
+		
 		
 		return "user-page";
 	}
 	
+	//Expanded list - can be multiple things, like on pizza lab
+	@RequestMapping("/list/affirmations")
+	public String list(Model model) {
+		
+		//for the header
+		boolean loggedIn = Methods.checkLogin(session);
+		
+		User user = (User)session.getAttribute("user");
+		
+		//Get list of their favorite Affirmations
+		List<FavAffirmation> list =
+				affirmationRepo.findByUserId(user.getId());
+		//Sort and then reverse its order so newest is at the top
+		Collections.sort(list);
+		Collections.reverse(list);
+				
+		
+		//for the header
+		model.addAttribute("loggedin", loggedIn);
+		
+		model.addAttribute("list", list);
+		
+		return "affirmations-list";
+	}
 	
+	
+	//Delete affirmation
+	//Taking a url allows us to come here from 2 different pages
+	@RequestMapping("/delete/affirmation")
+	public String deleteAffirmation(
+			@RequestParam(value = "url") String url,
+			@RequestParam(value = "id") Long id,
+			Model model) {
+		
+		affirmationRepo.deleteById(id);
+		
+		return "redirect:" + url;
+	}
+	
+	//Expanded list - can be multiple things, like on pizza lab
+	@RequestMapping("/list/records")
+	public String listRecords(Model model) {
+		
+		//for the header
+		boolean loggedIn = Methods.checkLogin(session);
+		
+		User user = (User)session.getAttribute("user");
+		
+		//Get list of their records
+		List<Record> list =
+				recordRepo.findByUserId(user.getId());
+		//Sort and then reverse its order so newest is at the top
+		Collections.sort(list);
+		Collections.reverse(list);
+				
+		
+		//for the header
+		model.addAttribute("loggedin", loggedIn);
+		
+		model.addAttribute("list", list);
+		
+		return "records-list";
+	}
+	
+	
+	//Delete record
+	//Taking a url allows us to come here from 2 different pages
+	@RequestMapping("/delete/record")
+	public String deleteRecord(
+			@RequestParam(value = "url") String url,
+			@RequestParam(value = "id") Long id,
+			Model model) {
+		
+		recordRepo.deleteById(id);
+		
+		return "redirect:" + url;
+	}
 
+
+
+	
+	@PostMapping("/record")
+	public String saveRecord(
+			@RequestParam(value = "list") String list,
+			@RequestParam(value = "text") String text,
+			Model model) {
+		
+		boolean loggedIn = Methods.checkLogin(session);
+		
+		
+		if (!loggedIn) {
+			model.addAttribute("loggedin", loggedIn);
+		} else {
+		
+			//Get user
+			User user = (User)session.getAttribute("user");
+			
+			//Get list of their favorite Affirmations
+			List<Record> records =
+					recordRepo.findByUserId(user.getId());
+			
+			
+			//Loop through favorites to see if it exists already
+			boolean exists = false;
+			for (Record r: records) {
+				if (r.getText().equals(text)) {
+					exists = true;
+				}
+			}
+			
+			
+			//Create new favorite - if it doesn't exist
+			if (!exists) {
+				
+				//Create values for affirmation
+				//Date from timestamp
+				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+				Date date=new Date(timestamp.getTime());
+				
+				
+				Record favorite = 
+						new Record(date, text, user.getId());
+				//Save to favorite
+				recordRepo.save(favorite);
+			}
+			
+		}
+		
+		//Find way to let user know if their save was successful
+		
+		//if list variable is yes, redirect to list page
+		if (list.equals("yes")) {
+			return "redirect:/list/records";
+		} else {
+			return "redirect:/user";
+		}
+		
+		
+	}
+
+	
+	
 	// Login page
 	@RequestMapping("/login")
 	public String login(Model model) {
@@ -266,7 +428,7 @@ public class HomeController {
 	}
 
 	// User info page
-	@RequestMapping("/user-info")
+	@RequestMapping("/settings")
 	public String userSettings(Model model) {
 
 		User user = (User) session.getAttribute("user");
@@ -378,7 +540,7 @@ public class HomeController {
 			
 			session.setAttribute("loggedIn", loggedIn);
 			
-			return "redirect:/user-info";
+			return "redirect:/settings";
 
 		}
 		

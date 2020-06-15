@@ -10,64 +10,76 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "favorite_affirmations")
-public class FavAffirmation implements Comparable<FavAffirmation> {
+@Table(name = "records")
+public class Record implements Comparable<Record> {
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Date datetime;
-	private String affirmation;
+	private String text;
 	@Column(name = "user_id")
 	private Long userId;
 	
-	public FavAffirmation() {}
+	public Record() {}
 	
-	public FavAffirmation(Date datetime, String affirmation,
-			Long userId) {
+	public Record(Date datetime, String text, Long userId) {
+		
 		this.datetime = datetime;
-		this.affirmation = affirmation;
+		this.text = text;
 		this.userId = userId;
+		
 	}
+	
+	
+	
+	
 	
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public Date getDatetime() {
 		return datetime;
 	}
+
 	public void setDatetime(Date datetime) {
 		this.datetime = datetime;
 	}
-	public String getAffirmation() {
-		return affirmation;
+
+	public String getText() {
+		return text;
 	}
-	public void setAffirmation(String affirmation) {
-		this.affirmation = affirmation;
+
+	public void setText(String text) {
+		this.text = text;
 	}
+
 	public Long getUserId() {
 		return userId;
 	}
+
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 	
 	
+
 	@Override
 	public String toString() {
-		return "FavoriteAffirmations [id=" + id + ", datetime=" + datetime + ", affirmation=" + affirmation
-				+ ", userId=" + userId + "]";
+		return "Record [id=" + id + ", datetime=" + datetime + ", text=" + text + ", userId=" + userId + "]";
 	}
 
-	
 	//Compare by date. If they're the same, compare by id order.
 	//(Guess you could probably just compare by id but oh well. This is
 	//more error proof.)
 	@Override
-	public int compareTo(FavAffirmation o) {
+	public int compareTo(Record o) {
 		if (datetime == o.getDatetime()) {
 			return id.compareTo(o.getId());
 		} else {
@@ -75,8 +87,4 @@ public class FavAffirmation implements Comparable<FavAffirmation> {
 		}
 		
 	}
-	
-	
-	
-	
 }
