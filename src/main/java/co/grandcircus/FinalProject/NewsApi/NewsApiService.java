@@ -10,7 +10,7 @@ import co.grandcircus.FinalProject.ArticleApi.TopicResponse;
 public class NewsApiService {
 
 	private RestTemplate rest = new RestTemplate();
-	private String apiKey = 9f36072691b04780b857f211a9279dad;
+	private String apiKey = "9f36072691b04780b857f211a9279dad";
 	
 	public Article getAArticleByKeyword(String keyword) {
 		
