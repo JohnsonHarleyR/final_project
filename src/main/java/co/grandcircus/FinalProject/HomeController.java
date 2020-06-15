@@ -339,5 +339,23 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping("/questionaire")
+	public String displayUserQuestionaire() {
+		
+		
+		
+		return "user-questionaire";
+		
+	}
+	@PostMapping("/questionaire")
+	public String saveAndDistributeQuestionaireValues(@RequestParam(value="mentalHealth") List<String> mentalHealth, @RequestParam(value="musicQuestion") List<String> musicGenres,
+			@RequestParam(value="weightGoalText") String weightGoalText, @RequestParam(value="userWeight") Integer userWeight,
+			@RequestParam(value="userGoalWeight", required = false) Integer userGoalWeight) {
+		
+		
+		
+		return "redirect:/user-info";
+		
+	}
 	
 }
