@@ -13,7 +13,7 @@
 <link href="/style.css" rel="stylesheet" />
 
 <meta charset="ISO-8859-1">
-<title>User Profile</title>
+<title>User Page</title>
 </head>
 <body>
 
@@ -24,11 +24,33 @@
 
 <!-- MainBody -->
 <main class="container">
-<h1>${user.name}'s Profile</h1>
+<h1>${user.name}'s Page</h1>
 
 <section id="user-options">
-<a href="/settings">Settings</a>
+	<a href="/settings">Settings</a>
 </section>
+
+
+<section id="affirmations">
+	<h2>Favorite Affirmations</h2>
+	<c:forEach var="affirmation" items="${affirmations}" end="2">
+		
+		<form action="/delete/affirmation" method="post">
+		<button type="submit"></button>
+		</form>
+		${affirmation.affirmation}
+		
+		
+		<br>
+	</c:forEach>
+	
+	<!-- Form to pass list into "display more" page -->
+	<form action="/list" method="post">
+	<input type="hidden" value="${affirmations}"/>
+	<button type="submit">See More</button>
+	</form>
+</section>
+
 
 
 </main>

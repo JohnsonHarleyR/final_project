@@ -21,10 +21,6 @@ import co.grandcircus.FinalProject.User.User;
 
 @Controller
 public class SoulController {
-
-	
-	@Autowired
-	private UserDao userRepo;
 	
 	@Autowired
 	private AffirmationDao affirmationRepo;

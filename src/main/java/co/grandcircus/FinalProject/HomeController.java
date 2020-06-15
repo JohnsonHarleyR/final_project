@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import co.grandcircus.FinalProject.Favorites.AffirmationDao;
+import co.grandcircus.FinalProject.Favorites.FavAffirmation;
 import co.grandcircus.FinalProject.QuoteApi.QuoteService;
 import co.grandcircus.FinalProject.User.User;
 import co.grandcircus.FinalProject.User.UserDao;
 
 
+//Figure out why the error messages stay there after logging in
+//instead of resetting to default. Fix.
 
 
 @Controller
@@ -30,6 +34,9 @@ public class HomeController {
 
 	@Autowired
 	private UserDao userRepo;
+	
+	@Autowired
+	private AffirmationDao affirmationRepo;
 
 	private String loginMessage = "Please enter your username and password.";
 	private String signUpMessage = "Please enter the following information.";
@@ -50,12 +57,51 @@ public class HomeController {
 		return "index";
 	}
 	
-	
+	@RequestMapping("/emergency")
+	public String emergency(Model model) {
+		
+		//for the header
+		boolean loggedIn = Methods.checkLogin(session);
+		
+		
+		//for the header
+		model.addAttribute("loggedin", loggedIn);
+		
+		return "emergency";
+	}
 	
 	
 	
 	// USER PAGES
-
+	
+	
+	//User profile/favorites page
+	@RequestMapping("/user")
+	public String userPage(Model model) {
+		
+		//for the header
+		boolean loggedIn = Methods.checkLogin(session);
+		
+		User user = (User)session.getAttribute("user");
+		
+		
+		//Get list of their favorite Affirmations
+		List<FavAffirmation> affirmations =
+				affirmationRepo.findByUserId(user.getId());
+		
+		
+				
+				
+		//for the header
+		model.addAttribute("loggedin", loggedIn);
+		//Add user
+		model.addAttribute("user", user);
+		//Add affirmation list
+		model.addAttribute("affirmations", affirmations);
+		
+		return "user-page";
+	}
+	
 	
 
 	// Login page
