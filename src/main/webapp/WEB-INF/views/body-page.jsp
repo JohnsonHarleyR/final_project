@@ -15,7 +15,7 @@
 <section class="header">
 <%@ include file="partials/header.jsp" %>
 </section>
-
+<h1>Enter and exercise: </h1>
 	<form action = "/body" name = "exerciseForm" method = "post">
 	
 	          <textarea name = "userInput" rows = "3" cols = "80">Your text here</textarea>
@@ -28,6 +28,12 @@
 <h2>Time in minutes: ${excercise.duration_min}</h2>
 <h2>Exercise name : ${excercise.name}</h2>
 	<input type="submit" value="Add to completed">
+</c:forEach>
+
+<c:forEach var= "result" items="${resultList}">
+<h2>${result.name}</h2>
+<h2>${result.category.getName()}</h2>
+<h2>${result.description}</h2>
 </c:forEach>
 
 
