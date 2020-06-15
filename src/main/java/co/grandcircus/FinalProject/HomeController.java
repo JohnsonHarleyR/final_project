@@ -37,8 +37,7 @@ public class HomeController {
 	private String infoMessage = "Here is your user information.";
 	private String editMessage = "Edit your user info here.";
 	
-	
-	//Displays encouraging welcome message - what do you think?
+
 	@RequestMapping("/")
 	public String home (Model model) {
 		
@@ -52,37 +51,13 @@ public class HomeController {
 		return "index";
 	}
 	
-	//For emergency numbers
-	@RequestMapping("/emergency")
-	public String emergency(Model model) {
-		
-		boolean loggedIn = Methods.checkLogin(session);
-		model.addAttribute("loggedin", loggedIn);
-		
-		return "emergency";
-	}
+	
 	
 	
 	
 	// USER PAGES
 
-	//User profile page - with favorites
-	//Allows user to add positive events/reminders/notes
-	@RequestMapping("/profile")
-	public String profile(Model model) {
-		
-		User user = (User)session.getAttribute("user");
-		boolean loggedIn = Methods.checkLogin(session);
-		
-		
-		
-		
-		model.addAttribute("loggedin", loggedIn);
-		model.addAttribute("user", user);
-		
-		return "profile";
-		
-	}
+	
 
 	// Login page
 	@RequestMapping("/login")
@@ -217,7 +192,7 @@ public class HomeController {
 			//Doing this repeatedly to make session last longer
 			session.setAttribute("user", user);
 			
-			return "redirect:/settings";
+			return "redirect:/user-info";
 
 		}
 	}
@@ -246,7 +221,7 @@ public class HomeController {
 	}
 
 	// User info page
-	@RequestMapping("/settings")
+	@RequestMapping("/user-info")
 	public String userSettings(Model model) {
 
 		User user = (User) session.getAttribute("user");
