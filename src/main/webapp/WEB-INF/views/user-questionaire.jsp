@@ -16,6 +16,8 @@
 
 <form>
 
+<%-- Mental Health Question --%>
+
   <div class="form-group" id = "mentalHealthQuestion">
   <label for="mentalHealthQuestion">Do you have any mental illnesses?</label>
 <div class="form-check">
@@ -43,6 +45,8 @@
   </label>
 </div>
 </div>
+
+<%-- Music Preference Question --%>
 
 <div class="form-group" id = "musicQuestion">
   <label for="musicQuestion">What kind of music do you like?</label>
@@ -72,6 +76,8 @@
 </div>
 </div>
 
+<%-- Body Goals (Gaining/Maintaining/Losing) --%>
+
   <div class="form-group">
     <label for="exampleFormControlSelect1">How would you like to change your body?</label>
     <select name="weightGoalText"class="form-control" id="FormControlSelect1">
@@ -80,18 +86,20 @@
       <option>I Want To Maintain My Current Weight</option>
     </select>
   </div>
-  
+  <%-- User Current Body Weight --%>
 <div class="form-group">
     <label for="FormControlInput2" >How much do you weigh currently?</label>
     <input type="text" name="userWeight" class="form-control" id="FormControlInput2">
   </div>
   
+  <%-- THIS QUESTION WILL ONLY DISPLAY IF THEY WANT TO GAIN OR LOSE WEIGHT--%>
   <c:if test="${weightGoalText != 'I Want To Maintain My Current Weight'}" >
   <div class="form-group">
     <label for="FormControlInput3" >What is your goal weight?</label>
     <input type="text" name="userGoalWeight" class="form-control" id="FormControlInput3">
   </div>
   </c:if>
+ 
  
  <button type="submit" class="btn btn-primary">Submit</button>
 
