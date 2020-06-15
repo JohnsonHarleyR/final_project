@@ -15,33 +15,30 @@
 
 
 <form>
-<div class="form-group">
-    <label for="textArea1">Tell Us About Yourself</label>
-    <textarea class="form-control" id="textArea1" rows="3"></textarea>
-  </div>
+
   <div class="form-group" id = "mentalHealthQuestion">
   <label for="mentalHealthQuestion">Do you have any mental illnesses?</label>
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" >
-  <label class="form-check-label" for="defaultCheck1">
+  <input class="form-check-input" name= "mentalHealth" type="checkbox" value="depression" id="check1" >
+  <label class="form-check-label" for="check1">
     Depression
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" >
-  <label class="form-check-label" for="defaultCheck2">
+  <input class="form-check-input" name= "mentalHealth" type="checkbox" value="anxiety" id="check2" >
+  <label class="form-check-label" for="check2">
     Anxiety
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" >
-  <label class="form-check-label" for="defaultCheck2">
+  <input class="form-check-input" name= "mentalHealth" type="checkbox" value="ocd" id="check3" >
+  <label class="form-check-label" for="check3">
     OCD
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" >
-  <label class="form-check-label" for="defaultCheck2">
+  <input class="form-check-input" name= "mentalHealth" type="checkbox" value="null" id="check4" >
+  <label class="form-check-label" for="check4">
     None
   </label>
 </div>
@@ -50,33 +47,53 @@
 <div class="form-group" id = "musicQuestion">
   <label for="musicQuestion">What kind of music do you like?</label>
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" >
-  <label class="form-check-label" for="defaultCheck1">
+  <input class="form-check-input" type="checkbox" value="" id="check5" >
+  <label class="form-check-label" for="check5">
     Rap/Hip-Hop
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" >
-  <label class="form-check-label" for="defaultCheck2">
+  <input class="form-check-input" type="checkbox" value="" id="check6" >
+  <label class="form-check-label" for="check6">
     Classical
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" >
-  <label class="form-check-label" for="defaultCheck2">
+  <input class="form-check-input" type="checkbox" value="" id="check7" >
+  <label class="form-check-label" for="check7">
     Jazz
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" >
-  <label class="form-check-label" for="defaultCheck2">
+  <input class="form-check-input" type="checkbox" value="" id="check8" >
+  <label class="form-check-label" for="check8">
     Rock 
   </label>
 </div>
 </div>
 
-
-
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">How would you like to change your body?</label>
+    <select name="weightGoalText"class="form-control" id="FormControlSelect1">
+      <option>I Want To Lose Weight</option>
+      <option>I Want To Gain Weight</option>
+      <option>I Want To Maintain My Current Weight</option>
+    </select>
+  </div>
+  
+<div class="form-group">
+    <label for="FormControlInput2" >How much do you weigh currently?</label>
+    <input type="text" name="userWeight" class="form-control" id="FormControlInput2">
+  </div>
+  
+  <c:if test="${weightGoalText != 'I Want To Maintain My Current Weight'}" >
+  <div class="form-group">
+    <label for="FormControlInput3" >What is your goal weight?</label>
+    <input type="text" name="userGoalWeight" class="form-control" id="FormControlInput3">
+  </div>
+  </c:if>
+ 
+ <button type="submit" class="btn btn-primary">Submit</button>
 
 
 </form>
