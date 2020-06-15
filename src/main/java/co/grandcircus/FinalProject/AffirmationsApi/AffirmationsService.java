@@ -18,8 +18,6 @@ public class AffirmationsService {
 		
 		return affirmation;
 		
-		
-		
 	}
 
 }

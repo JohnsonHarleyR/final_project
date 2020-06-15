@@ -27,7 +27,27 @@
 <!-- MainBody -->
 <main class="container">
 
-${affirmation}
+
+
+<!-- If user is logged in, show option to save -->
+<c:choose>
+	<c:when test="${!loggedin}">
+		${affirmation}
+	</c:when>
+	<c:when test="${exists}">
+		${affirmation}
+	</c:when>
+	<c:otherwise>
+		<form action="/save/affirmation" method="post">
+			${affirmation}
+			<br>
+			<input type="hidden" name="affirmation" 
+			value="${affirmation}"/>
+			<button type="submit">Save</button>
+		</form>
+	</c:otherwise>
+</c:choose>
+
 <br>
 
 

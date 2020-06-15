@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import co.grandcircus.FinalProject.QuoteApi.Quote;
 import co.grandcircus.FinalProject.QuoteApi.QuoteService;
 import co.grandcircus.FinalProject.User.User;
 import co.grandcircus.FinalProject.User.UserDao;
@@ -340,5 +339,23 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping("/questionaire")
+	public String displayUserQuestionaire() {
+		
+		
+		
+		return "user-questionaire";
+		
+	}
+	@PostMapping("/questionaire")
+	public String saveAndDistributeQuestionaireValues(@RequestParam(value="mentalHealth") List<String> mentalHealth, @RequestParam(value="musicQuestion") List<String> musicGenres,
+			@RequestParam(value="weightGoalText") String weightGoalText, @RequestParam(value="userWeight") Integer userWeight,
+			@RequestParam(value="userGoalWeight", required = false) Integer userGoalWeight) {
+		
+		
+		
+		return "redirect:/user-info";
+		
+	}
 	
 }
