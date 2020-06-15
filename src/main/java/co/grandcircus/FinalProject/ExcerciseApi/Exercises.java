@@ -10,7 +10,7 @@ public class Exercises {
 	private Photo photo;
 	private Long compendium_code; 
 	private String name;
-	private String desription;
+	private String description;
 	private String benefits;
 	public Long getTag_id() {
 		return tag_id;
@@ -60,11 +60,11 @@ public class Exercises {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDesription() {
-		return desription;
+	public String getDescription() {
+		return description;
 	}
 	public void setDesription(String desription) {
-		this.desription = desription;
+		this.description = desription;
 	}
 	public String getBenefits() {
 		return benefits;
@@ -76,7 +76,7 @@ public class Exercises {
 	public String toString() {
 		return "Exercises [tag_id=" + tag_id + ", user_input=" + user_input + ", duration_min=" + duration_min
 				+ ", met=" + met + ", nf_calories=" + nf_calories + ", photo=" + photo + ", compendium_code="
-				+ compendium_code + ", name=" + name + ", desription=" + desription + ", benefits=" + benefits + "]";
+				+ compendium_code + ", name=" + name + ", desription=" + description + ", benefits=" + benefits + "]";
 	}
 	
 	

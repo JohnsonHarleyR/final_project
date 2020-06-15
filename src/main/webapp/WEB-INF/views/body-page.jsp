@@ -12,25 +12,30 @@
 </head>
 <body>
 
-<!-- Header -->
 <section class="header">
 <%@ include file="partials/header.jsp" %>
 </section>
-
-
-<c:forEach var= "excercise" items="${excercises}">
-<h1>${excercise.nf_calories }</h1>
-
-
-</c:forEach>
-
+<h1>Enter and exercise: </h1>
 	<form action = "/body" name = "exerciseForm" method = "post">
 	
 	          <textarea name = "userInput" rows = "3" cols = "80">Your text here</textarea>
 					<input type="submit" value="Submit">
 	
 	</form>
-	
+
+<c:forEach var= "excercise" items="${excercises}">
+<h2>Total Calories burned: ${excercise.nf_calories }</h2>
+<h2>Time in minutes: ${excercise.duration_min}</h2>
+<h2>Exercise name : ${excercise.name}</h2>
+	<input type="submit" value="Add to completed">
+</c:forEach>
+
+<c:forEach var= "result" items="${resultList}">
+<h2>${result.name}</h2>
+<h2>${result.category.getName()}</h2>
+<h2>${result.description}</h2>
+</c:forEach>
+
 
 </body>
 </html>
