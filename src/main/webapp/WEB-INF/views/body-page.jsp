@@ -31,9 +31,9 @@
 </c:forEach>
 
 <c:forEach var= "result" items="${resultList}">
-<h2>${result.name}</h2>
-<h2>${result.category.getName()}</h2>
-<h2>${result.description}</h2>
+<h3>${result.name}</h3>
+<p>${result.description}</p>
+
 </c:forEach>
 
 

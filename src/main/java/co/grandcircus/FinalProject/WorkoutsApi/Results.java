@@ -3,21 +3,34 @@ package co.grandcircus.FinalProject.WorkoutsApi;
 import java.util.List;
 
 public class Results {
+	private Integer id;
 	private String name;
-	private Category category;
+	private Integer category;
+	private Integer language;
 	private String description;
-	private List <Equipment> equipment;
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Category getCategory() {
+	public Integer getCategory() {
 		return category;
 	}
-	public void setCategory(Category category) {
+	public void setCategory(Integer category) {
 		this.category = category;
+	}
+	public Integer getLanguage() {
+		return language;
+	}
+	public void setLanguage(Integer language) {
+		this.language = language;
 	}
 	public String getDescription() {
 		return description;
@@ -25,14 +38,11 @@ public class Results {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public List<Equipment> getEquipment() {
-		return equipment;
-	}
-	public void setEquipment(List<Equipment> equipment) {
-		this.equipment = equipment;
-	}
+
 	@Override
 	public String toString() {
-		return "Results [name=" + name + ", description=" + description + "]";
+		return "Results [id=" + id + ", name=" + name + ", category=" + category + ", language=" + language
+				+ ", description=" + description +"]";
 	}
+	
 }

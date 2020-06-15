@@ -3,10 +3,11 @@ package co.grandcircus.FinalProject.NewsApi;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 
-
+@Service
 public class NewsApiService {
 
 	private RestTemplate rest = new RestTemplate();
@@ -14,8 +15,8 @@ public class NewsApiService {
 	
 	public Article getAArticleByKeyword(String keyword) {
 		
-		String url = "https://newsapi.org/v2/everything?q={q}bitcoin&apiKey={apiKey}";
-		
+		String url = "https://newsapi.org/v2/everything?q=" + keyword + "&apiKey=" + apiKey;
+		System.out.println(url);
 		NewsApiResponse response = rest.getForObject(url, NewsApiResponse.class, apiKey, keyword);
 		
 		List<Article> list = response.getArticles();

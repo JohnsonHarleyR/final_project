@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.grandcircus.FinalProject.ArticleApi.ArticleService;
 import co.grandcircus.FinalProject.ArticleApi.Result;
+import co.grandcircus.FinalProject.NewsApi.Article;
+import co.grandcircus.FinalProject.NewsApi.NewsApiService;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -24,7 +26,8 @@ public class MindController {
 	@Autowired
 	private HttpSession session;
 	
-	
+	@Autowired
+	private NewsApiService newsService;
 	
 	
 	
@@ -62,8 +65,9 @@ public class MindController {
 		             
 		//System.out.println(result.toString());
 		
-		
-	    
+		Article article = newsService.getAArticleByKeyword("Lacking motivation");
+	    model.addAttribute("article", article);
+		System.out.println(article.toString());
 	    //Testing area - datetime stuff
 	    
 	    //Format datetime

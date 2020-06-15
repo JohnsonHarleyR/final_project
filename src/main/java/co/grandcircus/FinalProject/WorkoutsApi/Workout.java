@@ -2,20 +2,20 @@ package co.grandcircus.FinalProject.WorkoutsApi;
 
 public class Workout {
 
-	private ExerciseInfo excerciseInfo;
+	private ExerciseInfo exercise;
 
 	public ExerciseInfo getExcerciseInfo() {
-		return excerciseInfo;
+		return exercise;
 	}
 
 	public void setExcerciseInfo(ExerciseInfo excerciseInfo) {
-		this.excerciseInfo = excerciseInfo;
+		this.exercise = excerciseInfo;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Workout [excerciseInfo=" + excerciseInfo + "]";
+		return "Workout [exercise=" + exercise + "]";
 	}
 	
 	

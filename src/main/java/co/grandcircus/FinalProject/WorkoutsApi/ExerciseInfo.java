@@ -7,6 +7,7 @@ public class ExerciseInfo {
 	private String next;
 	private String previous;
 	private List<Results> results;
+
 	public Integer getCount() {
 		return count;
 	}

@@ -28,6 +28,9 @@ ${result.sourceUrl}<br>
 ${time}
 <br>
 ${ftime}
+
+
+<h1><c:out value="${article.title }"></c:out></h1>
 </section>
 
 

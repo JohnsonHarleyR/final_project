@@ -38,8 +38,6 @@ public class BodyController {
 
 		List<Results> resultList = workoutService.getWorkout();
 		
-		System.out.println(resultList);
-
 		model.addAttribute("resultList", resultList);
 		model.addAttribute("loggedin", loggedIn);
 

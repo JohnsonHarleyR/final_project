@@ -14,7 +14,7 @@ public class WorkoutService {
 	
 	public List<Results> getWorkout() {
 		
-		String url = "https://wger.de/api/v2/exerciseinfo/";
+		String url = "https://wger.de/api/v2/exercise/?language=2&status=2";
 
 		
 		ExerciseInfo response = rest.getForObject(url, ExerciseInfo.class);
