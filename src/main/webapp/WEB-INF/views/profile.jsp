@@ -13,7 +13,7 @@
 <link href="/style.css" rel="stylesheet" />
 
 <meta charset="ISO-8859-1">
-<title>User Information</title>
+<title>User Profile</title>
 </head>
 <body>
 
@@ -24,51 +24,11 @@
 
 <!-- MainBody -->
 <main class="container">
+<h1>${user.name}'s Profile</h1>
 
-
-<article class="card text-left" style="width: 19rem;">
-<table>
-<tr>
-<th>
-
-	<section class="card-header">
-		<h1>User Information</h1>		
-	</section>
-</th>
-</tr>
-<tr>
-<td>
-<section class="card-body">
-<p id="editmsg">
-<i>${message}</i>
-</p>
-
-<p>
-<b>Username: </b> ${user.username}
-</p>
-<p>
-<b>Email: </b> ${user.email}
-</p>
-<p>
-<b>Password: </b> ${password}
-</p>
-<p>
-<b>First name: </b> ${user.name}
-</p>
-
-<p id="sub">
-<a href="/user/edit" id="btnedit"><button type="button" id="btnsub"
-class="btn btn-primary btn-lg">Edit Info</button></a>
-</p>
-
+<section id="user-options">
+<a href="/settings">Settings</a>
 </section>
-
-</td>
-</tr>
-
-</table>
-</article>
-
 
 
 </main>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -19,14 +19,31 @@
 
 <!-- Header -->
 <section class="header">
-
+<%@ include file="partials/header.jsp" %>
 </section>
 
 <!-- MainBody -->
 <main class="container">
 
-<h1>Test:</h1>
-${affirmation}
+<h1>Welcome,<br>you are not alone!</h1>
+
+<p>
+We all need help sometimes, there is no shame in that. No matter what life may bring, 
+you deserve to be happy and healthy. That is why we hope to provide you with more of 
+the love and support you need.
+</p>
+
+<p>
+Here, you will find resources, articles, and affirmations to help you stay healthy. You'll 
+also find social support from others who understand what you are going through. This is 
+a safe space for you to grow and we are glad you're here!</b>
+</p>
+
+<br>
+
+<section>
+<h2><a style="color: #FF0000" href="/emergency">Need Help?</a></h2>
+</section>
 
 </main>
 

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -20,7 +20,7 @@
 
 <!-- Header -->
 <section class="header">
-
+<%@ include file="partials/header.jsp" %>
 </section>
 
 <!-- MainBody -->
@@ -61,9 +61,7 @@
 					</tr>
 					<tr>
 					<td>
-					<button id="si" type="submit" class="btn btn-dark btn-lg">Sign In</button>
-					<a href="/sign-up"><button type="button" id="su" style="float: right;"
-					 class="btn btn-dark btn-lg">Sign Up</button></a>
+					<button id="si" type="submit" class="btn btn-primary btn-lg">Sign In</button>
 					
 					</td>
 					</tr>
@@ -77,7 +75,7 @@
 		<c:otherwise>
 			<section id="panda">
 				<h1>${user.name}, you are already logged in!</h1>
-				<img width=300px src="/confused-panda-brown.png">
+				<img width=300px src="/confused-panda-blue.png">
 			</section>
 		</c:otherwise>
 	</c:choose>

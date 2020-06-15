@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -19,8 +19,7 @@
 
 <!-- Header -->
 <section class="header">
-
-
+<%@ include file="partials/header.jsp" %>
 </section>
 
 <!-- MainBody -->
@@ -59,7 +58,7 @@
 			<input id="t5" type="text" name="name" value="${user.name}" required/>
 			</p>
 			<p  id="sub">
-			<button id="btnsub" type="submit" class="btn btn-dark btn-lg">Submit Changes</button>
+			<button id="btnsub" type="submit" class="btn btn-primary btn-lg">Submit Changes</button>
 			</p>
 			</form>
 		</section>

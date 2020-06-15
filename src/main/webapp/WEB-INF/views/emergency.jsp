@@ -13,62 +13,37 @@
 <link href="/style.css" rel="stylesheet" />
 
 <meta charset="ISO-8859-1">
-<title>User Information</title>
+<title>Emergency Resources</title>
 </head>
 <body>
 
 <!-- Header -->
 <section class="header">
-<%@ include file="partials/header.jsp" %>
+	<%@ include file="partials/header.jsp" %>
 </section>
 
 <!-- MainBody -->
 <main class="container">
 
-
-<article class="card text-left" style="width: 19rem;">
-<table>
-<tr>
-<th>
-
-	<section class="card-header">
-		<h1>User Information</h1>		
-	</section>
-</th>
-</tr>
-<tr>
-<td>
-<section class="card-body">
-<p id="editmsg">
-<i>${message}</i>
+<p>
+<h2 style="color: #FF0000">Need Help?</h2>
+These services are available 24/7 and free!
 </p>
 
 <p>
-<b>Username: </b> ${user.username}
+<b>National Suicide Prevention Lifeline</b><br>
+<b style="font-size: 25px">1-800-273-8255</b>
 </p>
+
 <p>
-<b>Email: </b> ${user.email}
+<b>National Domestic Violence Hotline</b><br>
+<b style="font-size: 25px">1-800-799-SAFE (7233)</b>
 </p>
+
 <p>
-<b>Password: </b> ${password}
+<b>National Sexual Assault Hotline</b><br>
+<b style="font-size: 25px">1-800-656-HOPE (4673)</b>
 </p>
-<p>
-<b>First name: </b> ${user.name}
-</p>
-
-<p id="sub">
-<a href="/user/edit" id="btnedit"><button type="button" id="btnsub"
-class="btn btn-primary btn-lg">Edit Info</button></a>
-</p>
-
-</section>
-
-</td>
-</tr>
-
-</table>
-</article>
-
 
 
 </main>

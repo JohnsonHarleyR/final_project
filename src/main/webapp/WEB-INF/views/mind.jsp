@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -8,12 +8,27 @@
 </head>
 <body>
 
+<!-- Header -->
+<section class="header">
+<%@ include file="partials/header.jsp" %>
+</section>
+
+<section>
 ${result.name}<br>
 ${result.description}<br>
 ${result.sourceUrl}<br>
+</section>
 
-
-
+<!-- Testing Area - temporary -->
+<section>
+<br>
+<br>
+<b>Testing Area</b>
+<br>
+${time}
+<br>
+${ftime}
+</section>
 
 
 

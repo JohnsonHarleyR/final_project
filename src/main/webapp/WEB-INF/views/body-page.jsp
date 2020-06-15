@@ -11,6 +11,11 @@
 <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
+
+<section class="header">
+<%@ include file="partials/header.jsp" %>
+</section>
+
 	<form action = "/body" name = "exerciseForm" method = "post">
 	
 	          <textarea name = "userInput" rows = "3" cols = "80">Your text here</textarea>
