@@ -23,11 +23,16 @@
 	
 	</form>
 
-<c:forEach var= "excercise" items="${excercises}">
-<h2>Total Calories burned: ${excercise.nf_calories }</h2>
-<h2>Time in minutes: ${excercise.duration_min}</h2>
-<h2>Exercise name : ${excercise.name}</h2>
-	<input type="submit" value="Add to completed">
+<c:forEach var= "exercise" items="${exercises}">
+<h2>Total Calories burned: ${exercise.nf_calories}</h2>
+<h2>Time in minutes: ${exercise.duration_min}</h2>
+<h2>Exercise name : ${exercise.name}</h2>
+<form action="/save/exercises" method="post">	
+	<input type="hidden" name ="nf_calories" value="${exercise.nf_calories}"/>
+	<input type="hidden" name ="duration_min" value="${exercise.duration_min}"/>
+	<input type="hidden" name ="name" value="${exercise.name}"/>
+	<button type="submit">Save</button>
+</form>
 </c:forEach>
 
 <c:forEach var= "result" items="${resultList}">
