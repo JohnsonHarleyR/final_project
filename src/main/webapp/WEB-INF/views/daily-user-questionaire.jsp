@@ -16,7 +16,7 @@
 
  <div class="form-group">
     <label for="\FormControlSelect1">How are you feeling today?</label>
-    <select class="form-control" id="FormControlSelect1">
+    <select name= "feelings" class="form-control" id="FormControlSelect1">
       <option>Happy</option>
       <option>Sad</option>
       <option>Un-Motivated</option>
@@ -29,50 +29,83 @@
 <div class="form-group" id="excerciseFocusOptions">
 <label for="excerciseFocusOptions" >What part of your body would you like to work on today?</label>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="9" >
-  <label class="form-check-label" for="exampleRadios1">
+  <input class="form-check-input" type="radio" name="workoutFocus" id="radios1" value="9" >
+  <label class="form-check-label" for="radios1">
    Legs
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="14">
-  <label class="form-check-label" for="exampleRadios2">
+  <input class="form-check-input" type="radio" name="workoutFocus" id="radios2" value="14">
+  <label class="form-check-label" for="radios2">
    Calves
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="11" >
-  <label class="form-check-label" for="exampleRadios3">
+  <input class="form-check-input" type="radio" name="workoutFocus" id="radios3" value="11" >
+  <label class="form-check-label" for="radios3">
    Chest
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="12" >
-  <label class="form-check-label" for="exampleRadios3">
+  <input class="form-check-input" type="radio" name="workoutFocus" id="radios4" value="12" >
+  <label class="form-check-label" for="radios4">
    Back
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="13" >
-  <label class="form-check-label" for="exampleRadios3">
+  <input class="form-check-input" type="radio" name="workoutFocus" id="radios5" value="13" >
+  <label class="form-check-label" for="radios5">
    Shoulders
   </label>
   </div>
   <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="null" >
-  <label class="form-check-label" for="exampleRadios3">
+  <input class="form-check-input" type="radio" name="workoutFocus" id="radios6" value="null" >
+  <label class="form-check-label" for="radios6">
    Not Working Out Today
   </label>
 </div>
 </div>
 
-<%-- Want to add question specifically pertaining to what news they want to see, if any at all --%>
-<%-- 
-<div class="form-group">
-
-
+<div class="form-group" id = "interestsQuestion">
+  <label for="interestsQuestion">What topics are you interested in today?</label>
+<div class="form-check">
+<input class="form-check-input" name= "interests[]" type="hidden" value="none" >
+  <input class="form-check-input" name="interests[]" type="checkbox" value="0" id="check5" >
+  <label class="form-check-label" for="check5">
+    Top Headlines
+  </label>
 </div>
---%>
+<div class="form-check">
+  <input class="form-check-input" name="interests[]" type="checkbox" value="1" id="check6" >
+  <label class="form-check-label" for="check6">
+   Spirituality
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" name="interests[]" type="checkbox" value="2" id="check7" >
+  <label class="form-check-label" for="check7">
+   Overcoming Struggle
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" name="interests[]" type="checkbox" value="3" id="check8" >
+  <label class="form-check-label" for="check8">
+  Something Funny
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" name="interests[]" type="checkbox" value="4" id="check9" >
+  <label class="form-check-label" for="check8">
+  Mental Health
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" name="interests[]" type="checkbox" value="5" id="check10" >
+  <label class="form-check-label" for="check8">
+ Meditation 
+  </label>
+</div>
+</div>
 
 <button type="submit" class="btn btn-primary">Submit</button>
 </form>

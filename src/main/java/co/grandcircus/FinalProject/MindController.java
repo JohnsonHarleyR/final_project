@@ -44,6 +44,10 @@ public class MindController {
 	@Autowired
 	private UserDao userRepo;
 	
+	// List of possible choices from daily user questionaire
+	private String[] questionAnswers = {
+			
+	};
 	//List of possible article keywords
 	private String[] keywords = {"mental health", "lacking motivation",
 			"substance abuse", "anxiety disorders", "self esteem",

@@ -12,11 +12,18 @@ public class NewsApiService {
 
 	private RestTemplate rest = new RestTemplate();
 	private String apiKey = "9f36072691b04780b857f211a9279dad";
-	
+	private List<Article> getTopNews() {
+		String url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=9f36072691b04780b857f211a9279dad";
+		NewsApiResponse response = rest.getForObject(url, NewsApiResponse.class, apiKey);
+		List<Article> list = response.getArticles();
+		
+		return list;
+		
+	}
 	public Article getAArticleByKeyword(String keyword) {
 		
 		String url = "https://newsapi.org/v2/everything?q=" + keyword + "&apiKey=" + apiKey;
-		System.out.println(url);
+		
 		NewsApiResponse response = rest.getForObject(url, NewsApiResponse.class, apiKey, keyword);
 		
 		List<Article> list = response.getArticles();
