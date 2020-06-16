@@ -14,21 +14,17 @@ public class FavArticle implements Comparable<FavArticle>{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Date datetime;
-	private String author;
 	private String title;
 	private String description;
 	private String url;
 	@Column(name = "user_id")
 	private Long userId;
 	
-	FavArticle(){
-		
-	}
+	public FavArticle() {}
 
-public FavArticle(Date datetime, String author, String title, String description, String url, Long userId) {
+public FavArticle(Date datetime, String title, String description, String url, Long userId) {
 		super();
 		this.datetime = datetime;
-		this.author = author;
 		this.title = title;
 		this.description = description;
 		this.url = url;
@@ -49,14 +45,6 @@ public Long getId() {
 
 	public void setDatetime(Date datetime) {
 		this.datetime = datetime;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
 	}
 
 	public String getTitle() {

@@ -19,6 +19,18 @@
 <c:out value="${article.description }"></c:out>
 <br>
 <a href="${article.url}">Read Article</a>
+
+<form action="/save/article" method="post">
+			${article}
+			<br>
+			<input type="hidden" name="title" 
+			value="${article.title}"/>
+			<input type="hidden" name="description" 
+			value="${article.description}"/>
+			<input type="hidden" name="url" 
+			value="${article.url}"/>
+			<button type="submit">Save</button>
+		</form>
 </section>
 
 

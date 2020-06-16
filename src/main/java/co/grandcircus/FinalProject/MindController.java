@@ -120,8 +120,10 @@ public class MindController {
 		
 	}
 	@PostMapping("/save/article")
-	public String saveAffirmation(
-			@RequestParam(value = "article") Article article,
+	public String saveAffirmation( 
+			@RequestParam(value = "title") String title,
+			@RequestParam(value = "description") String description,
+			@RequestParam(value="url") String url,
 			Model model) {
 		
 		boolean loggedIn = Methods.checkLogin(session);
@@ -142,7 +144,7 @@ public class MindController {
 			//Loop through favorites to see if it exists already
 			boolean exists = false;
 			for (FavArticle a: favarticle) {
-				if (a.getTitle().equals(article.getTitle())) {
+				if (a.getTitle().equals(title)) {
 					exists = true;
 				}
 			}
@@ -154,12 +156,12 @@ public class MindController {
 				//Create values for affirmation
 				//Date from timestamp
 				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-				Date date=new Date(timestamp.getTime());
+				Date datetime=new Date(timestamp.getTime());
 				
 				//need to get the variable article
 				FavArticle favorite = 
-						new FavArticle(date, article.getAuthor(), article.getTitle(), 
-							article.getDescription(), article.getUrl(), user.getId());
+						new FavArticle(datetime, title, 
+							description, url, user.getId());
 				//Save to favorite
 				articleRepo.save(favorite);
 			}
@@ -168,7 +170,7 @@ public class MindController {
 		
 		//Find way to let user know if their save was successful
 		
-		return "redirect:mind";
+		return "redirect:/mind";
 	}
 }
 
