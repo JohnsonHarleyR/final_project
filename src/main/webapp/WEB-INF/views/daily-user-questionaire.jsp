@@ -13,9 +13,9 @@
 <body>
 
 <form>
-
+<input name= "userId" type="hidden" value="${user.id}" >
  <div class="form-group">
-    <label for="\FormControlSelect1">How are you feeling today?</label>
+    <label for="FormControlSelect1">How are you feeling today?</label>
     <select name= "feelings" class="form-control" id="FormControlSelect1">
       <option>Happy</option>
       <option>Sad</option>
@@ -66,45 +66,16 @@
 </div>
 </div>
 
-<div class="form-group" id = "interestsQuestion">
-  <label for="interestsQuestion">What topics are you interested in today?</label>
-<div class="form-check">
-<input class="form-check-input" name= "interests[]" type="hidden" value="none" >
-  <input class="form-check-input" name="interests[]" type="checkbox" value="0" id="check5" >
-  <label class="form-check-label" for="check5">
-    Top Headlines
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" name="interests[]" type="checkbox" value="1" id="check6" >
-  <label class="form-check-label" for="check6">
-   Spirituality
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" name="interests[]" type="checkbox" value="2" id="check7" >
-  <label class="form-check-label" for="check7">
-   Overcoming Struggle
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" name="interests[]" type="checkbox" value="3" id="check8" >
-  <label class="form-check-label" for="check8">
-  Something Funny
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" name="interests[]" type="checkbox" value="4" id="check9" >
-  <label class="form-check-label" for="check8">
-  Mental Health
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" name="interests[]" type="checkbox" value="5" id="check10" >
-  <label class="form-check-label" for="check8">
- Meditation 
-  </label>
-</div>
+<%--Question ties into the mind page for display of an article --%>
+<div class="form-group">
+    <label for="FormControlSelect2">What topics are you interested in today?</label>
+    <select name= "interests" class="form-control" id="FormControlSelect2">
+      <option value = "0">Top Headlines</option>
+      <option value = "1">Spirituality</option>
+      <option value = "2">Overcoming Struggle</option>
+      <option value = "3">Mental Health</option>
+      <option value = "4">Meditation</option>
+    </select>
 </div>
 
 <button type="submit" class="btn btn-primary">Submit</button>

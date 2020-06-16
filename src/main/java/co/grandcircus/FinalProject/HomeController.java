@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import co.grandcircus.FinalProject.DailyQuestions.DailyUserQuestions;
+import co.grandcircus.FinalProject.DailyQuestions.DailyUserQuestionsDao;
 import co.grandcircus.FinalProject.Favorites.AffirmationDao;
 import co.grandcircus.FinalProject.Favorites.ArticleDao;
 import co.grandcircus.FinalProject.Favorites.ExerciseDao;
@@ -60,6 +62,9 @@ public class HomeController {
 	
 	@Autowired
 	private UserPreferencesDao preferencesRepo;
+	
+	@Autowired
+	private DailyUserQuestionsDao dailyQuestionsRepo;
 
 	private String loginMessage = "Please enter your username and password.";
 	private String signUpMessage = "Please enter the following information.";
@@ -722,5 +727,38 @@ public class HomeController {
 		return "redirect:/user-info";
 		
 	}
+	
+	//daily questionaire controller , may want to put all the questionaire stuff in it's own controller
+	// but i'll put it here for now 
+	
+	@RequestMapping("/dailyCheckIn")
+	public String displayDailyCheckInQuestionaire(Model model){
+	
+		User user = (User) session.getAttribute("user");
+		session.setAttribute("user", user);
+		
+		model.addAttribute("user",user);
+		
+		
+		
+		return "daily-user-questionaire";
+	}
+	@PostMapping("/dailyCheckIn")
+	public String saveDailyResults(@RequestParam (value = "userId") Long userId, @RequestParam (value="feelings") String feeling, 
+			@RequestParam (value = "workoutFocus") Integer workoutFocus, @RequestParam (value = "interests") Integer interest) {
+				
+		DailyUserQuestions dailyQuestion = new DailyUserQuestions();
+		
+		dailyQuestion.setUserId(userId);
+		dailyQuestion.setFeelings(feeling);
+		dailyQuestion.setWorkoutFocus(workoutFocus);
+		dailyQuestion.setInterest(interest);
+		
+		dailyQuestionsRepo.save(dailyQuestion);
+		
+		return "redirect:/user-info";
+		
+	}
+	
 	
 }
