@@ -44,24 +44,9 @@ a safe space for you to grow and we are glad you're here!</b>
 <section>
 <p>
 <h2 style="color: #FF0000">Need Help?</h2>
-These services are available 24/7 and free!
+<a href="/emergency">These services are available 24/7 and free!</a>
 </p>
 
-<p>
-<b>National Suicide Prevention Lifeline</b><br>
-<b style="font-size: 25px">1-800-273-8255</b>
-</p>
-
-<p>
-<b>National Domestic Violence Hotline</b><br>
-<b style="font-size: 25px">1-800-799-SAFE (7233)</b>
-</p>
-
-<p>
-<b>National Sexual Assault Hotline</b><br>
-<b style="font-size: 25px">1-800-656-HOPE (4673)</b>
-</p>
-</section>
 
 </main>
 
