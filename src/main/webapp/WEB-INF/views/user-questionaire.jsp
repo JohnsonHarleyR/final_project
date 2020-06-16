@@ -14,13 +14,14 @@
 <body>
 
 
-<form>
-
+<form method="post">
+<input name= "userId" type="hidden" value="${user.id}" >
 <%-- Mental Health Question --%>
 
   <div class="form-group" id = "mentalHealthQuestion">
   <label for="mentalHealthQuestion">Do you have any mental illnesses?</label>
 <div class="form-check">
+ <input class="form-check-input" name= "mentalHealth[]" type="hidden" value="none" id="check0" >
   <input class="form-check-input" name= "mentalHealth[]" type="checkbox" value="depression" id="check1" >
   <label class="form-check-label" for="check1">
     Depression
@@ -51,6 +52,7 @@
 <div class="form-group" id = "musicQuestion">
   <label for="musicQuestion">What kind of music do you like?</label>
 <div class="form-check">
+<input class="form-check-input" name= "musicPreferences[]" type="hidden" value="none" >
   <input class="form-check-input" name="musicPreferences[]" type="checkbox" value="Rap/Hip-Hop" id="check5" >
   <label class="form-check-label" for="check5">
     Rap/Hip-Hop
@@ -92,7 +94,7 @@
 
   <div class="form-group">
     <label for="exampleFormControlSelect1">How would you like to change your body?</label>
-    <select name="weightGoalText"class="form-control" id="FormControlSelect1">
+    <select name="bodyGoalText"class="form-control" id="FormControlSelect1">
       <option>I Want To Lose Weight</option>
       <option>I Want To Gain Weight</option>
       <option>I Want To Maintain My Current Weight</option>
@@ -105,7 +107,7 @@
   </div>
   
   <%-- THIS QUESTION WILL ONLY DISPLAY IF THEY WANT TO GAIN OR LOSE WEIGHT--%>
-  <c:if test="${weightGoalText != 'I Want To Maintain My Current Weight'}" >
+  <c:if test="${bodyGoalText != 'I Want To Maintain My Current Weight'}" >
   <div class="form-group">
     <label for="FormControlInput3" >What is your goal weight?</label>
     <input type="text" name="userGoalWeight" class="form-control" id="FormControlInput3">
