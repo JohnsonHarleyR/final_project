@@ -22,9 +22,12 @@ public class ChallengeList {
 	private String description;
 	private Long pointsReq;
 	private Date date;
-	private String experationDate;
+	private Date experationDate;
 	private String category;
 	private String prizeUrl;
+	@ManyToOne
+	private User user;
+	
 	public User getUser() {
 		return user;
 	}
@@ -32,9 +35,6 @@ public class ChallengeList {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	@ManyToOne
-	private User user;
 	
 	public ChallengeList() {
 		
@@ -84,8 +84,8 @@ public class ChallengeList {
 		return experationDate;
 	}
 
-	public void setExperationDate(String experationDate) {
-		this.experationDate = experationDate;
+	public void setExperationDate(Date experation) {
+		this.experationDate = experation;
 	}
 
 	public String getCategory() {

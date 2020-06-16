@@ -9,4 +9,5 @@ public interface ChallengeListDao extends JpaRepository <ChallengeList, Long> {
 	ChallengeList findByUserId(Long userId);
 
 	ChallengeList findByCategory(String category);
+	
 }

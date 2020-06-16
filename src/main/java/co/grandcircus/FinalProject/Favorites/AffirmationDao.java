@@ -8,5 +8,4 @@ public interface AffirmationDao extends JpaRepository<FavAffirmation, Long> {
 	
 	List<FavAffirmation> findByUserId (long id);
 	//List<FavAffirmation> findByDate (Date date);
-
 }
