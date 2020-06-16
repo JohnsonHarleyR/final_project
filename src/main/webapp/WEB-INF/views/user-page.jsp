@@ -27,7 +27,9 @@
 <h1>${user.name}'s Page</h1>
 
 <section id="user-options">
-	<a href="/settings">Settings</a>
+	<b>Username:</b> ${user.username}
+	<br>
+	<b>Points:</b> ${user.points}
 </section>
 
 <section id="record-events">

@@ -40,6 +40,17 @@ public class MindController {
 	@Autowired 
 	private ArticleDao articleRepo;
 	
+	//List of possible article keywords
+	private String[] keywords = {"mental health", "lacking motivation",
+			"substance abuse", "anxiety disorders", "self esteem",
+			"insomnia", "spirituality", "stress", "trauma", "therapy",
+			"autism", "depression", "meditation", "loneliness",
+			"suicide prevention", "emotional health", "mental wellbeing",
+			"coping with stress", "lifting depression", "overcoming struggle"};
+	
+	//Articles for body page: healthy eating
+	//Articles for soul page: meditation
+	
 	
 	
 	//Bailie's API is better.
@@ -58,29 +69,24 @@ public class MindController {
 		
 		boolean loggedIn = Methods.checkLogin(session);
 		
+		//Store article keyword - (currently grabs random)
+		String keyword = keywords[Math.abs((int)(Math.random() * keywords.length))];
 		
-		//Get random CDC article
-		Result[] results = articleService.getArticlesByTopic("depression"); 
-		//Result[] results = articleService.getArticlesByTopicId(5898); //didn't work
 		
-		//Initializes random
-		Random rand = new Random();
-		
-	    int length = results.length;
-		
-	    int articleNumber = rand.nextInt(length);
-		
-		Result result = results[articleNumber];
-	    
-	    model.addAttribute("result",result);
-		             
+		//test
+//		System.out.println(keyword);
+//		
+//	    int articleNumber = rand.nextInt(length);
+//		
+//		Result result = results[articleNumber];
+//	    
+//	    model.addAttribute("result",result);	             
 		//System.out.println(result.toString());
-	    
-	    
+	  
 	    //NEWS API
-	    
+
 		
-		Article article = newsService.getAArticleByKeyword("Lacking motivation");
+		Article article = newsService.getAArticleByKeyword(keyword);
 	    model.addAttribute("article", article);
 		System.out.println(article.toString());
 	    //Testing area - datetime stuff
