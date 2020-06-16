@@ -38,7 +38,8 @@
 	pick-me-up!
 	
 	<form action="record" method="post">
-	<textarea name="text" rows="5" cols="50" placeholder="What made you smile?" required></textarea>
+	<textarea name="text" rows="5" cols="50" maxlength="500" 
+	placeholder="What made you smile?" required></textarea>
 	
 	<br>
 	<input type="hidden" name="list" value="no"/>
