@@ -22,6 +22,9 @@ import co.grandcircus.FinalProject.Favorites.AffirmationDao;
 import co.grandcircus.FinalProject.Favorites.ExerciseDao;
 import co.grandcircus.FinalProject.Favorites.FavAffirmation;
 import co.grandcircus.FinalProject.Favorites.FavExercises;
+import co.grandcircus.FinalProject.FoodApi.FoodService;
+import co.grandcircus.FinalProject.FoodApi.Foods;
+import co.grandcircus.FinalProject.FoodApi.Nutrients;
 import co.grandcircus.FinalProject.User.User;
 import co.grandcircus.FinalProject.User.UserDao;
 import co.grandcircus.FinalProject.WorkoutsApi.ExerciseInfo;
@@ -42,6 +45,10 @@ public class BodyController {
 	
 	@Autowired
 	private WorkoutService workoutService;
+	
+	
+	@Autowired
+	private FoodService foodService;
 
 	@Autowired
 	private HttpSession session;
@@ -73,9 +80,32 @@ public class BodyController {
 
 		return "body-page";
 	}
+	@PostMapping("/bodyfood")
+	public String foodWithInput(Model model, @RequestParam(required = false) String userInput) {
+
+		boolean loggedIn = Methods.checkLogin(session);
+
+		Nutrients foodTracker = foodService.getTest(userInput);
+
+		List<Foods> food = foodTracker.getFoods();
+
+		model.addAttribute("food", food);
+		model.addAttribute("loggedin", loggedIn);
+
+		return "body-page";
+	}
+	
+	@PostMapping("/complete/workout")
+	public String completeWorkout(Model model){
+		User user = (User)session.getAttribute("user");
+		Methods.addWorkoutPoints(user, userRepo);
+		return "redirect:/body";
+	}
+	
 	@PostMapping("/save/exercises")
 	public String saveExercises(@RequestParam double nf_calories, double duration_min, String name,
 			Model model) {
+		
 		boolean loggedIn = Methods.checkLogin(session);
 		
 		

@@ -51,6 +51,21 @@ public class Methods {
 	}
 	public static void addExercisePoints(User user, UserDao repo) {
 		//Set number of points it's worth
+		final int POINTS = 1; //can grab from challenge list later
+		
+		user.setPoints(user.getPoints() + POINTS);
+		//save user
+		repo.save(user);
+		
+		
+		//TODO (check if daily limit is reached before adding)
+		
+		
+		//Later set up to challenges
+
+	}
+	public static void addWorkoutPoints(User user, UserDao repo) {
+		//Set number of points it's worth
 		final int POINTS = 5; //can grab from challenge list later
 		
 		user.setPoints(user.getPoints() + POINTS);
