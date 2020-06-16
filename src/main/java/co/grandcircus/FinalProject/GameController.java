@@ -1,5 +1,6 @@
 package co.grandcircus.FinalProject;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -49,29 +50,33 @@ public class GameController {
 	}
 	
 	@RequestMapping("/submit-challenge")
-	public String submitChallenge(@RequestParam (value="category") String category,@RequestParam (value="date") Date date, 
-			@RequestParam(value = "description")String description, @RequestParam (value="experationDate") Date experation,
+	
+	public String submitChallenge(@RequestParam (value="category") String category, 
+			@RequestParam(value = "description")String description,
 			@RequestParam(value="name")String name, @RequestParam(value = "points_req") Long points_req, 
 			@RequestParam(value = "prize_url")String prize_url, Model model){
+		
 		    User user;
 		    user=(User)session.getAttribute("user");
-		    Long user_id = user.getId(); 
+		   // Long user_id = user.getId(); 
 		
-		    ChallengeList challengeList = null;
+		    ChallengeList challengeList = new ChallengeList();
 		    
-		    challengeList.setCategory(category); //Create Count
-		    challengeList.setDate(date);//date
-		    challengeList.setDescription(description);Created Account
-		    challengeList.setExperationDate(experation);
-		    challengeList.setName(name);Create Account
-		    challengeList.setPointsReq(points_req);//5
-		    challengeList.setPrizeUrl(prize_url);//
-		    challengeList.setUser(user);//session 
+			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+			Date date=new Date(timestamp.getTime());
+		    
+		    challengeList.setCategory(category);
+		    challengeList.setDatetime(date);
+		    challengeList.setDescription(description);
+		    challengeList.setName(name);
+		    challengeList.setPointsReq(points_req);
+		    challengeList.setPrizeUrl(prize_url);
+		    challengeList.setUser(user);
 		    
 		    ChallengeListRepo.save(challengeList);
 		    
 		
-		return "redirect:challenge-form";
+		return "redirect:/challenge-form";
 	}
 
 }
