@@ -27,16 +27,20 @@
 
 
 <section id="list">
-	<h1>Completed Exercises</h1>
+	<h1>Saved Articles</h1>
 	<a href="/user">Go back</a>
 	<br>
 	<br>
 	<c:forEach var="item" items="${list}">
-		<b>${item.name}</b>
+		<b>${item.title}</b>
 		<br>
-		Calories: ${item.nf_calories}
+		${item.description}
 		<br>
-		Duration: ${item.duration_min} minutes
+		<a href="${item.url}">Read Article</a>
+		<br>
+		<i>${item.datetime}</i> <a href="/delete/article?id=${item.id}&url=/user">
+		Delete</a>
+		<br>
 		<br>
 	</c:forEach>
 

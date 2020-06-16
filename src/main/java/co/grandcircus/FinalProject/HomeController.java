@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.grandcircus.FinalProject.Favorites.AffirmationDao;
+import co.grandcircus.FinalProject.Favorites.ArticleDao;
 import co.grandcircus.FinalProject.Favorites.ExerciseDao;
 import co.grandcircus.FinalProject.Favorites.FavAffirmation;
+import co.grandcircus.FinalProject.Favorites.FavArticle;
 import co.grandcircus.FinalProject.Favorites.FavExercises;
 import co.grandcircus.FinalProject.Favorites.Record;
 import co.grandcircus.FinalProject.Favorites.RecordDao;
@@ -41,6 +43,9 @@ public class HomeController {
 
 	@Autowired
 	private UserDao userRepo;
+	
+	@Autowired
+	private ArticleDao articleRepo;
 	
 	@Autowired
 	private AffirmationDao affirmationRepo;
@@ -103,6 +108,7 @@ public class HomeController {
 		User user = (User)session.getAttribute("user");
 		
 		
+		
 		//Get list of their favorite Affirmations
 		List<FavAffirmation> affirmations =
 				affirmationRepo.findByUserId(user.getId());
@@ -125,8 +131,14 @@ public class HomeController {
 		Collections.sort(exercises);
 		Collections.reverse(exercises);
 		
+		//Get list of their favorite articles
+		List<FavArticle> articles =
+				articleRepo.findByUserId(user.getId());
+		//Sort and then reverse its order so newest is at the top
+		Collections.sort(articles);
+		Collections.reverse(articles);
 		
-				
+		
 				
 		//for the header
 		model.addAttribute("loggedin", loggedIn);
@@ -135,6 +147,8 @@ public class HomeController {
 		
 		//Add affirmation list
 		model.addAttribute("affirmations", affirmations);
+		//Add affirmation list
+		model.addAttribute("articles", articles);
 		//Add record list
 		model.addAttribute("records", records);
 		//Add completed exercises list
@@ -183,45 +197,84 @@ public class HomeController {
 		return "redirect:" + url;
 	}
 	
+	//Expanded list - can be multiple things, like on pizza lab
+	@RequestMapping("/list/articles")
+	public String articleList(Model model) {
+		
+		//for the header
+		boolean loggedIn = Methods.checkLogin(session);
+		
+		User user = (User)session.getAttribute("user");
+		
+		//Get list of their favorite Affirmations
+		List<FavArticle> list =
+				articleRepo.findByUserId(user.getId());
+		//Sort and then reverse its order so newest is at the top
+		Collections.sort(list);
+		Collections.reverse(list);
+				
+		
+		//for the header
+		model.addAttribute("loggedin", loggedIn);
+		
+		model.addAttribute("list", list);
+		
+		return "articles-list";
+	}
+	
+	
+	//Delete affirmation
+	//Taking a url allows us to come here from 2 different pages
+	@RequestMapping("/delete/article")
+	public String deleteArticle(
+			@RequestParam(value = "url") String url,
+			@RequestParam(value = "id") Long id,
+			Model model) {
+		
+		articleRepo.deleteById(id);
+		
+		return "redirect:" + url;
+	}
+	
 	
 	//Expanded list - can be multiple things, like on pizza lab
-		@RequestMapping("/list/exercises")
-		public String exerciseList(Model model) {
-			
-			//for the header
-			boolean loggedIn = Methods.checkLogin(session);
-			
-			User user = (User)session.getAttribute("user");
-			
-			//Get list of their favorite Affirmations
-			List<FavExercises> list =
-					exerciseRepo.findByUserId(user.getId());
-			//Sort and then reverse its order so newest is at the top
-			Collections.sort(list);
-			Collections.reverse(list);
-					
-			
-			//for the header
-			model.addAttribute("loggedin", loggedIn);
-			
-			model.addAttribute("list", list);
-			
-			return "exercises-list";
-		}
+	@RequestMapping("/list/exercises")
+	public String exerciseList(Model model) {
 		
+		//for the header
+		boolean loggedIn = Methods.checkLogin(session);
 		
-		//Delete affirmation
-		//Taking a url allows us to come here from 2 different pages
-		@RequestMapping("/delete/exercise")
-		public String deleteExercise(
-				@RequestParam(value = "url") String url,
-				@RequestParam(value = "id") Long id,
-				Model model) {
-			
-			exerciseRepo.deleteById(id);
-			
-			return "redirect:" + url;
-		}
+		User user = (User)session.getAttribute("user");
+		
+		//Get list of their favorite Affirmations
+		List<FavExercises> list =
+				exerciseRepo.findByUserId(user.getId());
+		//Sort and then reverse its order so newest is at the top
+		Collections.sort(list);
+		Collections.reverse(list);
+				
+		
+		//for the header
+		model.addAttribute("loggedin", loggedIn);
+		
+		model.addAttribute("list", list);
+		
+		return "exercises-list";
+	}
+	
+	
+	//Delete affirmation
+	//Taking a url allows us to come here from 2 different pages
+	@RequestMapping("/delete/exercise")
+	public String deleteExercise(
+			@RequestParam(value = "url") String url,
+			@RequestParam(value = "id") Long id,
+			Model model) {
+		
+		exerciseRepo.deleteById(id);
+		
+		return "redirect:" + url;
+	}
 	
 	
 	
