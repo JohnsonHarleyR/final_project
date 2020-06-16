@@ -88,6 +88,50 @@
 	</form>
 </section>
 
+<section id="exercises">
+	<h2>Completed Exercises</h2>
+	<c:forEach var="item" items="${exercises}" end="2">
+		<b>${item.name}</b>
+		<br>
+		Calories: ${item.nf_calories}
+		<br>
+		Duration: ${item.duration_min} minutes
+		<br>
+		<i>${item.datetime}</i> <a href="/delete/exercise?id=${item.id}&url=/user">
+		Delete</a>
+		
+		<br>
+	</c:forEach>
+	
+	
+	<!-- Form to pass list into "display more" page -->
+	<form action="/list/exercises" method="post">
+	<button type="submit">See More</button>
+	</form>
+</section>
+
+<section id="articles">
+	<h2>Saved Articles</h2>
+	<c:forEach var="item" items="${articles}" end="2">
+		<b>${item.title}</b>
+		<br>
+		${item.description}
+		<br>
+		<a href="${item.url}">Read Article</a>
+		<br>
+		<i>${item.datetime}</i> <a href="/delete/article?id=${item.id}&url=/user">
+		Delete</a>
+
+		<br>
+	</c:forEach>
+	
+	
+	<!-- Form to pass list into "display more" page -->
+	<form action="/list/articles" method="post">
+	<button type="submit">See More</button>
+	</form>
+</section>
+
 
 
 </main>

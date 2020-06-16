@@ -11,6 +11,7 @@
 <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
+
 <form>
 
  <div class="form-group">
@@ -28,31 +29,31 @@
 <div class="form-group" id="excerciseFocusOptions">
 <label for="excerciseFocusOptions" >What part of your body would you like to work on today?</label>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="arms" >
+  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="9" >
   <label class="form-check-label" for="exampleRadios1">
-   Arms
+   Legs
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="abs">
+  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="14">
   <label class="form-check-label" for="exampleRadios2">
-   Abs
+   Calves
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="chest" >
+  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="11" >
   <label class="form-check-label" for="exampleRadios3">
    Chest
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="back" >
+  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="12" >
   <label class="form-check-label" for="exampleRadios3">
    Back
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="shoulders" >
+  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="13" >
   <label class="form-check-label" for="exampleRadios3">
    Shoulders
   </label>

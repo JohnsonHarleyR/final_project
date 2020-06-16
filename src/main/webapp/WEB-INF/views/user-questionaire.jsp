@@ -14,32 +14,33 @@
 <body>
 
 
-<form>
-
+<form method="post">
+<input name= "userId" type="hidden" value="${user.id}" >
 <%-- Mental Health Question --%>
 
   <div class="form-group" id = "mentalHealthQuestion">
   <label for="mentalHealthQuestion">Do you have any mental illnesses?</label>
 <div class="form-check">
-  <input class="form-check-input" name= "mentalHealth" type="checkbox" value="depression" id="check1" >
+ <input class="form-check-input" name= "mentalHealth[]" type="hidden" value="none" id="check0" >
+  <input class="form-check-input" name= "mentalHealth[]" type="checkbox" value="depression" id="check1" >
   <label class="form-check-label" for="check1">
     Depression
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" name= "mentalHealth" type="checkbox" value="anxiety" id="check2" >
+  <input class="form-check-input" name= "mentalHealth[]" type="checkbox" value="anxiety" id="check2" >
   <label class="form-check-label" for="check2">
     Anxiety
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" name= "mentalHealth" type="checkbox" value="ocd" id="check3" >
+  <input class="form-check-input" name= "mentalHealth[]" type="checkbox" value="ocd" id="check3" >
   <label class="form-check-label" for="check3">
     OCD
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" name= "mentalHealth" type="checkbox" value="null" id="check4" >
+  <input class="form-check-input" name= "mentalHealth[]" type="checkbox" value="null" id="check4" >
   <label class="form-check-label" for="check4">
     None
   </label>
@@ -51,27 +52,40 @@
 <div class="form-group" id = "musicQuestion">
   <label for="musicQuestion">What kind of music do you like?</label>
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="check5" >
+<input class="form-check-input" name= "musicPreferences[]" type="hidden" value="none" >
+  <input class="form-check-input" name="musicPreferences[]" type="checkbox" value="Rap/Hip-Hop" id="check5" >
   <label class="form-check-label" for="check5">
     Rap/Hip-Hop
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="check6" >
+  <input class="form-check-input" name="musicPreferences[]" type="checkbox" value="Classical" id="check6" >
   <label class="form-check-label" for="check6">
     Classical
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="check7" >
+  <input class="form-check-input" name="musicPreferences[]" type="checkbox" value="Jazz" id="check7" >
   <label class="form-check-label" for="check7">
     Jazz
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="check8" >
+  <input class="form-check-input" name="musicPreferences[]" type="checkbox" value="Rock" id="check8" >
   <label class="form-check-label" for="check8">
     Rock 
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" name="musicPreferences[]" type="checkbox" value="Pop" id="check9" >
+  <label class="form-check-label" for="check8">
+    Pop 
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" name="musicPreferences[]" type="checkbox" value="Country" id="check10" >
+  <label class="form-check-label" for="check8">
+    Country 
   </label>
 </div>
 </div>
@@ -80,7 +94,7 @@
 
   <div class="form-group">
     <label for="exampleFormControlSelect1">How would you like to change your body?</label>
-    <select name="weightGoalText"class="form-control" id="FormControlSelect1">
+    <select name="bodyGoalText"class="form-control" id="FormControlSelect1">
       <option>I Want To Lose Weight</option>
       <option>I Want To Gain Weight</option>
       <option>I Want To Maintain My Current Weight</option>
@@ -93,7 +107,7 @@
   </div>
   
   <%-- THIS QUESTION WILL ONLY DISPLAY IF THEY WANT TO GAIN OR LOSE WEIGHT--%>
-  <c:if test="${weightGoalText != 'I Want To Maintain My Current Weight'}" >
+  <c:if test="${bodyGoalText != 'I Want To Maintain My Current Weight'}" >
   <div class="form-group">
     <label for="FormControlInput3" >What is your goal weight?</label>
     <input type="text" name="userGoalWeight" class="form-control" id="FormControlInput3">

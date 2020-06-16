@@ -16,12 +16,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.grandcircus.FinalProject.Favorites.AffirmationDao;
+import co.grandcircus.FinalProject.Favorites.ArticleDao;
+import co.grandcircus.FinalProject.Favorites.ExerciseDao;
 import co.grandcircus.FinalProject.Favorites.FavAffirmation;
+import co.grandcircus.FinalProject.Favorites.FavArticle;
+import co.grandcircus.FinalProject.Favorites.FavExercises;
 import co.grandcircus.FinalProject.Favorites.Record;
 import co.grandcircus.FinalProject.Favorites.RecordDao;
 import co.grandcircus.FinalProject.QuoteApi.QuoteService;
 import co.grandcircus.FinalProject.User.User;
 import co.grandcircus.FinalProject.User.UserDao;
+import co.grandcircus.FinalProject.UserPreferences.UserPreferences;
+import co.grandcircus.FinalProject.UserPreferences.UserPreferencesDao;
 
 
 //Figure out why the error messages stay there after logging in
@@ -41,10 +47,19 @@ public class HomeController {
 	private UserDao userRepo;
 	
 	@Autowired
+	private ArticleDao articleRepo;
+	
+	@Autowired
 	private AffirmationDao affirmationRepo;
 	
 	@Autowired
+	private ExerciseDao exerciseRepo;
+	
+	@Autowired
 	private RecordDao recordRepo;
+	
+	@Autowired
+	private UserPreferencesDao preferencesRepo;
 
 	private String loginMessage = "Please enter your username and password.";
 	private String signUpMessage = "Please enter the following information.";
@@ -98,6 +113,7 @@ public class HomeController {
 		User user = (User)session.getAttribute("user");
 		
 		
+		
 		//Get list of their favorite Affirmations
 		List<FavAffirmation> affirmations =
 				affirmationRepo.findByUserId(user.getId());
@@ -113,7 +129,21 @@ public class HomeController {
 		Collections.reverse(records);
 		
 		
-				
+		//Get list of their favorite Affirmations
+		List<FavExercises> exercises =
+				exerciseRepo.findByUserId(user.getId());
+		//Sort and then reverse its order so newest is at the top
+		Collections.sort(exercises);
+		Collections.reverse(exercises);
+		
+		//Get list of their favorite articles
+		List<FavArticle> articles =
+				articleRepo.findByUserId(user.getId());
+		//Sort and then reverse its order so newest is at the top
+		Collections.sort(articles);
+		Collections.reverse(articles);
+		
+		
 				
 		//for the header
 		model.addAttribute("loggedin", loggedIn);
@@ -122,8 +152,12 @@ public class HomeController {
 		
 		//Add affirmation list
 		model.addAttribute("affirmations", affirmations);
+		//Add affirmation list
+		model.addAttribute("articles", articles);
 		//Add record list
 		model.addAttribute("records", records);
+		//Add completed exercises list
+		model.addAttribute("exercises", exercises);
 		
 		
 		return "user-page";
@@ -167,6 +201,87 @@ public class HomeController {
 		
 		return "redirect:" + url;
 	}
+	
+	//Expanded list - can be multiple things, like on pizza lab
+	@RequestMapping("/list/articles")
+	public String articleList(Model model) {
+		
+		//for the header
+		boolean loggedIn = Methods.checkLogin(session);
+		
+		User user = (User)session.getAttribute("user");
+		
+		//Get list of their favorite Affirmations
+		List<FavArticle> list =
+				articleRepo.findByUserId(user.getId());
+		//Sort and then reverse its order so newest is at the top
+		Collections.sort(list);
+		Collections.reverse(list);
+				
+		
+		//for the header
+		model.addAttribute("loggedin", loggedIn);
+		
+		model.addAttribute("list", list);
+		
+		return "articles-list";
+	}
+	
+	
+	//Delete affirmation
+	//Taking a url allows us to come here from 2 different pages
+	@RequestMapping("/delete/article")
+	public String deleteArticle(
+			@RequestParam(value = "url") String url,
+			@RequestParam(value = "id") Long id,
+			Model model) {
+		
+		articleRepo.deleteById(id);
+		
+		return "redirect:" + url;
+	}
+	
+	
+	//Expanded list - can be multiple things, like on pizza lab
+	@RequestMapping("/list/exercises")
+	public String exerciseList(Model model) {
+		
+		//for the header
+		boolean loggedIn = Methods.checkLogin(session);
+		
+		User user = (User)session.getAttribute("user");
+		
+		//Get list of their favorite Affirmations
+		List<FavExercises> list =
+				exerciseRepo.findByUserId(user.getId());
+		//Sort and then reverse its order so newest is at the top
+		Collections.sort(list);
+		Collections.reverse(list);
+				
+		
+		//for the header
+		model.addAttribute("loggedin", loggedIn);
+		
+		model.addAttribute("list", list);
+		
+		return "exercises-list";
+	}
+	
+	
+	//Delete affirmation
+	//Taking a url allows us to come here from 2 different pages
+	@RequestMapping("/delete/exercise")
+	public String deleteExercise(
+			@RequestParam(value = "url") String url,
+			@RequestParam(value = "id") Long id,
+			Model model) {
+		
+		exerciseRepo.deleteById(id);
+		
+		return "redirect:" + url;
+	}
+	
+	
 	
 	//Expanded list - can be multiple things, like on pizza lab
 	@RequestMapping("/list/records")
@@ -404,7 +519,7 @@ public class HomeController {
 			//Doing this repeatedly to make session last longer
 			session.setAttribute("user", user);
 			
-			return "redirect:/user-info";
+			return "redirect:/questionaire";
 
 		}
 	}
@@ -433,7 +548,7 @@ public class HomeController {
 	}
 
 	// User info page
-	@RequestMapping("/settings")
+	@RequestMapping("/user-info")
 	public String userSettings(Model model) {
 
 		User user = (User) session.getAttribute("user");
@@ -552,21 +667,58 @@ public class HomeController {
 		
 	}
 	
+	// Takes user to the questionnaire page 
 	@RequestMapping("/questionaire")
-	public String displayUserQuestionaire() {
+	public String displayUserQuestionaire(Model model) {
+		// getting and setting the user attribute to make the session last as long as possible 
+		// and allows the user Id to be passed to the model 
+		User user = (User) session.getAttribute("user");
+		session.setAttribute("user", user);
 		
-		
-		
+		model.addAttribute("user",user);
 		return "user-questionaire";
 		
 	}
+	//Submits the user questionnaire information to the database and redirects to the user info
 	@PostMapping("/questionaire")
-	public String saveAndDistributeQuestionaireValues(@RequestParam(value="mentalHealth") List<String> mentalHealth, @RequestParam(value="musicQuestion") List<String> musicGenres,
-			@RequestParam(value="weightGoalText") String weightGoalText, @RequestParam(value="userWeight") Integer userWeight,
+	public String saveAndDistributeQuestionaireValues(@RequestParam(value="userId") Long userId, @RequestParam(value="mentalHealth[]") String[] mentalHealth, @RequestParam(value="musicPreferences[]") String[] musicGenres,
+			@RequestParam(value="bodyGoalText") String bodyGoalText, @RequestParam(value="userWeight") Integer userWeight,
 			@RequestParam(value="userGoalWeight", required = false) Integer userGoalWeight) {
 		
+		// creating a string to store in the database, separated by ,
+		String allMentalIlnesses = "";
+		String allMusicGenrePreferences = "";
 		
+		//creating a new instance of UserPreferences to store in the database for the current user
+		UserPreferences userPreferences = new UserPreferences();
+		userPreferences.setUserId(userId);
+		userPreferences.setBodyGoalText(bodyGoalText);
+		userPreferences.setUserWeight(userWeight);
 		
+		// Logic to save a goal weight if a user wants to maintain weight, goal weight should be stored as user current weight
+		if(bodyGoalText != "I Want To Maintain My Current Weight") {
+			userPreferences.setUserGoalWeight(userGoalWeight);
+		}
+		else {
+			userPreferences.setUserGoalWeight(userWeight);
+		}
+		
+		// since the mental health boxes info comes in as a array the values have to be iterated through
+		// and added to a new string to store
+		for(String mentalIllness: mentalHealth) {
+			
+			allMentalIlnesses += mentalIllness + ",";
+		}
+		userPreferences.setMentalIllnesses(allMentalIlnesses);
+		
+		for(String musicGenre: musicGenres) {
+			
+			allMusicGenrePreferences += musicGenre + ",";
+		}
+		
+		userPreferences.setMusicGenrePreferences(allMusicGenrePreferences);
+		
+		preferencesRepo.save(userPreferences);
 		return "redirect:/user-info";
 		
 	}
