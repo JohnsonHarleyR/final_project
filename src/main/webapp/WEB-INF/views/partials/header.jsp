@@ -23,7 +23,7 @@
 <!-- Navigation Bar -->
 <nav class="navbar navbar-custom">
 
-	<ul class="nav" width="100%">
+	<ul class="nav">
 	
 		<li class="nav-item" >
 			<c:choose>
@@ -36,17 +36,16 @@
 			</c:choose>
 		</li>
 		
-		<!-- 
 		<c:choose>
 			<c:when test="${loggedin == false}">
 			</c:when>
 			<c:when test="${loggedin == true}">
 				<li class="nav-item">
-					<a class="nav-link" href="#">Favorites</a>
+				<a class="nav-link" href="/settings">Settings</a>
+					
 				</li>
 			</c:when>
 		</c:choose>
-		 -->
 		
 		<li class="nav-item">
 			<c:choose>
@@ -58,6 +57,17 @@
 				</c:when>
 			</c:choose>
 		</li>
+		
+		<c:choose>
+			<c:when test="${loggedin == false}">
+			</c:when>
+			<c:when test="${loggedin == true}">
+				<li class="nav-item">
+				<a class="nav-link">${user.points} pts</a>
+					
+				</li>
+			</c:when>
+		</c:choose>
 		
 		
 	</ul>

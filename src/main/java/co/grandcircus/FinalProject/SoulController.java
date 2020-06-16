@@ -159,7 +159,7 @@ public class SoulController {
 		
 		boolean loggedIn = Methods.checkLogin(session);
 		
-		
+		//If not logged in, skip the rest basically
 		if (!loggedIn) {
 			model.addAttribute("loggedin", loggedIn);
 		} else {

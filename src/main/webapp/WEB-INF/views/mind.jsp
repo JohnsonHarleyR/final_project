@@ -14,9 +14,8 @@
 </section>
 
 <section>
-${result.name}<br>
-${result.description}<br>
-${result.sourceUrl}<br>
+<h1><c:out value="${article.title }"></c:out></h1>
+<c:out value="${article.description }"></c:out>
 </section>
 
 <!-- Testing Area - temporary -->
@@ -29,8 +28,6 @@ ${time}
 <br>
 ${ftime}
 
-
-<h1><c:out value="${article.title }"></c:out></h1>
 </section>
 
 
