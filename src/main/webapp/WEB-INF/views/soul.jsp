@@ -50,6 +50,28 @@
 
 <br>
 
+<!-- Do it with the quote nows -->
+<!-- If user is logged in, show option to save -->
+<c:choose>
+	<c:when test="${loggedin == false}">
+		${quote.quote}
+		-${quote.author}
+	</c:when>
+	<c:when test="${qexists == true}">
+		${quote.quote}
+		-${quote.author}
+	</c:when>
+	<c:otherwise>
+		<form action="/save/affirmation" method="post">
+			${quote.quote}
+			-${quote.author}
+			<br>
+			<input type="hidden" name="affirmation" 
+			value="${quotestring}"/>
+			<button type="submit">Save</button>
+		</form>
+	</c:otherwise>
+</c:choose>
 
 
 </main>

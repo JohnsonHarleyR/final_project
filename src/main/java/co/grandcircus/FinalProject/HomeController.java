@@ -90,6 +90,11 @@ public class HomeController {
 		//for the header
 		boolean loggedIn = Methods.checkLogin(session);
 		
+		//in case the person leaves their computer on this page
+		//if the user gets logged out, redirect
+		if (!loggedIn)
+			return "redirect:/";
+		
 		User user = (User)session.getAttribute("user");
 		
 		

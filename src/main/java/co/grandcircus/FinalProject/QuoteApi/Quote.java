@@ -7,7 +7,7 @@ public class Quote {
 	private String quote;
 	private Integer length;
 	private String author;
-	private String[] tags;
+	//private String[] tags;
 	private String category;
 	private String language;
 	private String date;
@@ -46,6 +46,7 @@ public class Quote {
 		this.author = author;
 	}
 	
+	/*
 	//@return GET tags
 	public String[] getTags() {
 		return tags;
@@ -55,6 +56,7 @@ public class Quote {
 	public void setTags(String[] tags) {
 		this.tags = tags;
 	}
+	*/
 	
 	//@return GET category
 	public String getCategory() {
@@ -128,10 +130,20 @@ public class Quote {
 
 	@Override
 	public String toString() {
+		return "Quote [quote=" + quote + ", length=" + length + ", author=" + author + ", category=" + category
+				+ ", language=" + language + ", date=" + date + ", permalink=" + permalink + ", id=" + id
+				+ ", background=" + background + ", title=" + title + "]";
+	}
+
+	/*
+	@Override
+	public String toString() {
 		return "Quote [quote=" + quote + ", length=" + length + ", author=" + author + ", tags=" + Arrays.toString(tags)
 				+ ", category=" + category + ", language=" + language + ", date=" + date + ", permalink=" + permalink
 				+ ", id=" + id + ", background=" + background + ", title=" + title + "]";
 	}
+	*/
+	
 	
 	
 	
