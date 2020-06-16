@@ -15,6 +15,7 @@ import co.grandcircus.FinalProject.Favorites.FavArticle;
 import co.grandcircus.FinalProject.NewsApi.Article;
 import co.grandcircus.FinalProject.NewsApi.NewsApiService;
 import co.grandcircus.FinalProject.User.User;
+import co.grandcircus.FinalProject.User.UserDao;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -39,6 +40,9 @@ public class MindController {
 	
 	@Autowired 
 	private ArticleDao articleRepo;
+	
+	@Autowired
+	private UserDao userRepo;
 	
 	//List of possible article keywords
 	private String[] keywords = {"mental health", "lacking motivation",
@@ -164,12 +168,12 @@ public class MindController {
 							description, url, user.getId());
 				//Save to favorite
 				articleRepo.save(favorite);
+				Methods.addArticlePoints(user, userRepo);
+			}
 			}
 			
-		}
 		
 		//Find way to let user know if their save was successful
-		
 		return "redirect:/mind";
 	}
 }
