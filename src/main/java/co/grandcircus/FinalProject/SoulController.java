@@ -27,6 +27,9 @@ import co.grandcircus.FinalProject.User.User;
 public class SoulController {
 	
 	@Autowired
+	private UserDao userRepo;
+	
+	@Autowired
 	private AffirmationDao affirmationRepo;
 	
 	@Autowired
@@ -191,6 +194,10 @@ public class SoulController {
 						new FavAffirmation(date, affirmation, user.getId());
 				//Save to favorite
 				affirmationRepo.save(favorite);
+				
+				//Add points to user
+				Methods.addAffirmationPoints(user, userRepo);
+				
 			}
 			
 		}
