@@ -14,12 +14,12 @@ public class User implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	private String username;
 	private String email;
 	private String password;
 	private String name;
-	private Integer points;
+	private int points;
 	
 	public User() {
 		
@@ -35,7 +35,7 @@ public class User implements Serializable {
 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getUsername() {
@@ -70,7 +70,7 @@ public class User implements Serializable {
 		return points;
 	}
 
-	public void setPoints(Integer points) {
+	public void setPoints(int points) {
 		this.points = points;
 	}
 

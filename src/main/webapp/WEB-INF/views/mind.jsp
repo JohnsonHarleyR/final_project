@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Mind Page</title>
 </head>
 <body>
 
@@ -14,24 +14,13 @@
 </section>
 
 <section>
-${result.name}<br>
-${result.description}<br>
-${result.sourceUrl}<br>
-</section>
-
-<!-- Testing Area - temporary -->
-<section>
-<br>
-<br>
-<b>Testing Area</b>
-<br>
-${time}
-<br>
-${ftime}
-
 
 <h1><c:out value="${article.title }"></c:out></h1>
+<c:out value="${article.description }"></c:out>
+<br>
+<a href="${article.url}">Read Article</a>
 </section>
+
 
 
 
