@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.grandcircus.FinalProject.Favorites.AffirmationDao;
+import co.grandcircus.FinalProject.Favorites.ExerciseDao;
 import co.grandcircus.FinalProject.Favorites.FavAffirmation;
+import co.grandcircus.FinalProject.Favorites.FavExercises;
 import co.grandcircus.FinalProject.Favorites.Record;
 import co.grandcircus.FinalProject.Favorites.RecordDao;
 import co.grandcircus.FinalProject.QuoteApi.QuoteService;
@@ -42,6 +44,9 @@ public class HomeController {
 	
 	@Autowired
 	private AffirmationDao affirmationRepo;
+	
+	@Autowired
+	private ExerciseDao exerciseRepo;
 	
 	@Autowired
 	private RecordDao recordRepo;
@@ -113,6 +118,14 @@ public class HomeController {
 		Collections.reverse(records);
 		
 		
+		//Get list of their favorite Affirmations
+		List<FavExercises> exercises =
+				exerciseRepo.findByUserId(user.getId());
+		//Sort and then reverse its order so newest is at the top
+		Collections.sort(exercises);
+		Collections.reverse(exercises);
+		
+		
 				
 				
 		//for the header
@@ -124,6 +137,8 @@ public class HomeController {
 		model.addAttribute("affirmations", affirmations);
 		//Add record list
 		model.addAttribute("records", records);
+		//Add completed exercises list
+		model.addAttribute("exercises", exercises);
 		
 		
 		return "user-page";
@@ -167,6 +182,48 @@ public class HomeController {
 		
 		return "redirect:" + url;
 	}
+	
+	
+	//Expanded list - can be multiple things, like on pizza lab
+		@RequestMapping("/list/exercises")
+		public String exerciseList(Model model) {
+			
+			//for the header
+			boolean loggedIn = Methods.checkLogin(session);
+			
+			User user = (User)session.getAttribute("user");
+			
+			//Get list of their favorite Affirmations
+			List<FavExercises> list =
+					exerciseRepo.findByUserId(user.getId());
+			//Sort and then reverse its order so newest is at the top
+			Collections.sort(list);
+			Collections.reverse(list);
+					
+			
+			//for the header
+			model.addAttribute("loggedin", loggedIn);
+			
+			model.addAttribute("list", list);
+			
+			return "exercises-list";
+		}
+		
+		
+		//Delete affirmation
+		//Taking a url allows us to come here from 2 different pages
+		@RequestMapping("/delete/exercise")
+		public String deleteExercise(
+				@RequestParam(value = "url") String url,
+				@RequestParam(value = "id") Long id,
+				Model model) {
+			
+			exerciseRepo.deleteById(id);
+			
+			return "redirect:" + url;
+		}
+	
+	
 	
 	//Expanded list - can be multiple things, like on pizza lab
 	@RequestMapping("/list/records")
