@@ -4,9 +4,6 @@ package co.grandcircus.FinalProject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import co.grandcircus.FinalProject.SaveCounter.SaveCounter;
-import co.grandcircus.FinalProject.SaveCounter.SaveCounterDao;
 import co.grandcircus.FinalProject.User.User;
 import co.grandcircus.FinalProject.User.UserDao;
 
