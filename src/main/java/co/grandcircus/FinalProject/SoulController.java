@@ -115,7 +115,14 @@ public class SoulController {
 			 QuoteOfTheDay quoteOfDay = new QuoteOfTheDay(date,
 					 quote.getQuote(), quote.getAuthor());
 			 quoteRepo.save(quoteOfDay);
-			 String quoteString = quoteOfDay.getQuote() + " -" + quoteOfDay.getAuthor();
+			 String quoteString = "";
+			 if (quoteOfDay.getAuthor().equals(null) ||
+					 quoteOfDay.getAuthor().equals("")) {
+				 quoteString = quoteOfDay.getQuote();
+			 } else {
+				 quoteString = quoteOfDay.getQuote() + " -" + quoteOfDay.getAuthor();
+			 }
+			 
 			 model.addAttribute("quote", quote);
 			 model.addAttribute("quotestring", quoteString);
 			 qQuote = quote.getQuote();

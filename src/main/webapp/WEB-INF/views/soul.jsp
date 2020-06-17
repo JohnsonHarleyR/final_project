@@ -58,16 +58,16 @@
 <c:choose>
 	<c:when test="${loggedin == false}">
 		${quote.quote}
-		-${quote.author}
+		${quote.author}
 	</c:when>
 	<c:when test="${qexists == true}">
 		${quote.quote}
-		-${quote.author}
+		${quote.author}
 	</c:when>
 	<c:otherwise>
 		<form action="/save/affirmation" method="post">
 			${quote.quote}
-			-${quote.author}
+			${quote.author}
 			<br>
 			<input type="hidden" name="affirmation" 
 			value="${quotestring}"/>
