@@ -71,6 +71,7 @@ public class SoulController {
 			List<FavAffirmation> affirmations =
 					affirmationRepo.findByUserId(user.getId());
 			
+			
 			//Loop through favorites to see if it exists already
 			boolean exists = false;
 			for (FavAffirmation a: affirmations) {
