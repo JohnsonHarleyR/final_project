@@ -20,9 +20,8 @@
 <%-- Mental Health Question --%>
 
   <div class="form-group" id = "mentalHealthQuestion">
-  <label for="mentalHealthQuestion">Do you have any mental illnesses?</label>
+  <label for="mentalHealthQuestion">Would you like to address any mental health concerns?</label>
 <div class="form-check">
- <input class="form-check-input" name= "mentalHealth[]" type="hidden" value="none" id="check0" >
   <input class="form-check-input" name= "mentalHealth[]" type="checkbox" value="depression" id="check1" >
   <label class="form-check-label" for="check1">
     Depression
@@ -43,7 +42,7 @@
 <div class="form-check">
   <input class="form-check-input" name= "mentalHealth[]" type="checkbox" value="null" id="check4" >
   <label class="form-check-label" for="check4">
-    None
+    Prefer Not To Answer
   </label>
 </div>
 </div>
@@ -53,7 +52,6 @@
 <div class="form-group" id = "musicQuestion">
   <label for="musicQuestion">What kind of music do you like?</label>
 <div class="form-check">
-<input class="form-check-input" name= "musicPreferences[]" type="hidden" value="none" >
   <input class="form-check-input" name="musicPreferences[]" type="checkbox" value="Rap/Hip-Hop" id="check5" >
   <label class="form-check-label" for="check5">
     Rap/Hip-Hop
