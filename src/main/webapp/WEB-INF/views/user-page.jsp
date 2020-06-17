@@ -49,7 +49,7 @@
 	<button type="submit">Add</button>
 	</form>
 	<br>
-	<h3>Past Records</h3>
+	<h3>More Positives</h3>
 	<c:forEach var="record" items="${records}" end="2">
 		
 		

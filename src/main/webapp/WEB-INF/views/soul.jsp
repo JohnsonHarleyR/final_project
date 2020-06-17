@@ -51,6 +51,7 @@
 </c:choose>
 
 <br>
+<br>
 
 <!-- Do it with the quote nows -->
 <!-- If user is logged in, show option to save -->
