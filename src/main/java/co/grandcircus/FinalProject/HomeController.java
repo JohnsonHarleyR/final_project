@@ -551,7 +551,7 @@ public class HomeController {
 	}
 
 	// User info page
-	@RequestMapping("/user-info")
+	@RequestMapping("/settings")
 	public String userSettings(Model model) {
 
 		User user = (User) session.getAttribute("user");

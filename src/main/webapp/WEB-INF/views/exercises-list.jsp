@@ -38,6 +38,8 @@
 		<br>
 		Duration: ${item.duration_min} minutes
 		<br>
+		<i>${item.datetime}</i> <a href="/delete/exercise?id=${item.id}&url=/list/exercises">Delete</a>
+		<br>
 	</c:forEach>
 
 
