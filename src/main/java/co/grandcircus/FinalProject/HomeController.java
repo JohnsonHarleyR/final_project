@@ -707,11 +707,16 @@ public class HomeController {
 		}
 		userPreferences.setMentalIllnesses(allMentalIlnesses);
 		
-		for(String musicGenre: musicGenres) {
-			
-			allMusicGenrePreferences += musicGenre + ",";
+		for(int i = 0; i < musicGenres.length;i++) {
+			if (i == musicGenres.length - 1) 
+		{
+			allMusicGenrePreferences += musicGenres[i];
+		}else 
+		{
+			allMusicGenrePreferences += musicGenres[i]+ ",";
 		}
-		
+		}
+			
 		userPreferences.setMusicGenrePreferences(allMusicGenrePreferences);
 		
 		preferencesRepo.save(userPreferences);
