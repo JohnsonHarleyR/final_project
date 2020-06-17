@@ -35,8 +35,6 @@ import co.grandcircus.FinalProject.User.UserDao;
 @Controller
 public class HomeController {
 	
-	@Autowired
-	private QuoteService quoteService;
 	
 	@Autowired
 	private HttpSession session;
@@ -56,7 +54,7 @@ public class HomeController {
 	@Autowired
 	private RecordDao recordRepo;
 
-	private String loginMessage = "Please enter your username and password.";
+	private String loginMessage = "Please enter your username or e-mail and password.";
 	private String signUpMessage = "Please enter the following information.";
 	private String infoMessage = "Here is your user information.";
 	private String editMessage = "Edit your user info here.";

@@ -27,7 +27,9 @@
 <!-- MainBody -->
 <main class="container">
 
-
+<!-- Let's try kittens - kitten api -->
+<img style="float: right;" src="http://placekitten.com/${wi}/${he}" alt="Place Kitten" />
+<br>
 
 <!-- If user is logged in, show option to save -->
 <c:choose>

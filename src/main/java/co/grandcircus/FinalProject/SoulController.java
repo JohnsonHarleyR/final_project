@@ -54,6 +54,13 @@ public class SoulController {
 		//Get an affirmation
 		String affirmation = affirmationsService.getAffirmation();
 		
+		//Kitten Stuff!
+		//Get 2 random numbers
+		int wi = (int)(Math.random() * 400 + 200);
+		int he = (int)(Math.random() * 400 + 200);
+		model.addAttribute("wi", wi);
+		model.addAttribute("he", he);
+		
 		//If user is logged in, check to see if it's saved already
 		if (loggedIn) {
 			

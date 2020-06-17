@@ -30,6 +30,7 @@
 	<b>Username:</b> ${user.username}
 	<br>
 	<b>Points:</b> ${user.points}
+	<br>
 </section>
 
 <section id="record-events">
@@ -47,7 +48,7 @@
 	<input type="hidden" name="list" value="no"/>
 	<button type="submit">Add</button>
 	</form>
-	
+	<br>
 	<h3>Past Records</h3>
 	<c:forEach var="record" items="${records}" end="2">
 		
@@ -64,7 +65,7 @@
 	<form action="/list/records" method="post">
 	<button type="submit">See More</button>
 	</form>
-
+	<br>
 </section>
 
 
@@ -86,6 +87,7 @@
 	<form action="/list/affirmations" method="post">
 	<button type="submit">See More</button>
 	</form>
+	<br>
 </section>
 
 <section id="exercises">
@@ -108,6 +110,7 @@
 	<form action="/list/exercises" method="post">
 	<button type="submit">See More</button>
 	</form>
+		<br>
 </section>
 
 <section id="articles">
@@ -130,6 +133,7 @@
 	<form action="/list/articles" method="post">
 	<button type="submit">See More</button>
 	</form>
+		<br>
 </section>
 
 

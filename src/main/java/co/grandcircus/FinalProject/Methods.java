@@ -1,11 +1,17 @@
 package co.grandcircus.FinalProject;
 
+
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import co.grandcircus.FinalProject.SaveCounter.SaveCounter;
+import co.grandcircus.FinalProject.SaveCounter.SaveCounterDao;
 import co.grandcircus.FinalProject.User.User;
 import co.grandcircus.FinalProject.User.UserDao;
 
 public class Methods {
+	
 	
 	
 	//This holds methods needed by all controllers
@@ -31,12 +37,50 @@ public class Methods {
 		
 	}
 	
+	
+	
+	
+	
 	//Basic point methods
 	
 	//Save affirmation (or quote)
 	public static void addAffirmationPoints(User user, UserDao repo) {
 		//Set number of points it's worth
 		final int POINTS = 1; //can grab from challenge list later
+		final int LIMIT = 4;
+		
+		
+		/*
+		//Get todays affirmation saves
+		//First store current date
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		Date date =  new Date(ts.getTime());
+		String sDate = sdf.format(date);
+		
+		//Get today's save counter for user
+		//if it's not there, create new line
+		List<SaveCounter> counters = counterRepo.findByUserId(user.getId());
+		boolean exists = false;
+		SaveCounter counter = null;
+		for (SaveCounter c: counters) {
+			//Get date out of counter
+			Date cDate = c.getDatetime();
+			String sCDate = sdf.format(cDate);
+			
+			//compare dates
+			if (sDate.equals(sCDate)) {
+				exists = true;
+				counter = c;
+			}
+		}
+		
+		//if date doesn't exist yet, create new line
+		if (!exists) {
+			//counter = 
+		}
+		*/
+		
 		
 		user.setPoints(user.getPoints() + POINTS);
 		//save user
@@ -52,6 +96,7 @@ public class Methods {
 	public static void addExercisePoints(User user, UserDao repo) {
 		//Set number of points it's worth
 		final int POINTS = 5; //can grab from challenge list later
+		final int LIMIT = 2;
 		
 		user.setPoints(user.getPoints() + POINTS);
 		//save user
@@ -67,7 +112,26 @@ public class Methods {
 	
 public static void addArticlePoints(User user, UserDao repo) {
 	//Set number of points it's worth
-	final int POINTS = 5; //can grab from challenge list later
+	final int POINTS = 1; //can grab from challenge list later
+	final int LIMIT = 4;
+	
+	user.setPoints(user.getPoints() + POINTS);
+	//save user
+	repo.save(user);
+	
+	
+	//TODO (check if daily limit is reached before adding)
+	
+	
+	//Later set up to challenges
+
+}
+
+
+public static void addRecordPoints(User user, UserDao repo) {
+	//Set number of points it's worth
+	final int POINTS = 3; //can grab from challenge list later
+	final int LIMIT = 2;
 	
 	user.setPoints(user.getPoints() + POINTS);
 	//save user
