@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<form>
+<form method="post">
 <input name= "userId" type="hidden" value="${user.id}" >
  <div class="form-group">
     <label for="FormControlSelect1">How are you feeling today?</label>
@@ -59,7 +59,7 @@
   </label>
   </div>
   <div class="form-check">
-  <input class="form-check-input" type="radio" name="workoutFocus" id="radios6" value="null" >
+  <input class="form-check-input" type="radio" name="workoutFocus" id="radios6" value="0" >
   <label class="form-check-label" for="radios6">
    Not Working Out Today
   </label>
@@ -73,6 +73,7 @@
       <option value = "0">Top Headlines</option>
       <option value = "1">Spirituality</option>
       <option value = "2">Overcoming Struggle</option>
+      <option value = "3">Something Funny</option>
       <option value = "3">Mental Health</option>
       <option value = "4">Meditation</option>
     </select>

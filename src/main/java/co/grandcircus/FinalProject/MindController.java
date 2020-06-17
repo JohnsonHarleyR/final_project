@@ -48,7 +48,7 @@ public class MindController {
 	
 	// List of possible choices from daily user questionaire
 	private String[] questionAnswers = { "top headlines","spirituality","overcoming struggle",
-			"funny","mental health"};
+			"funny","mental health", "meditation"};
 	
 	//List of possible article keywords
 	private String[] keywords = {"mental health", "lacking motivation",
@@ -77,10 +77,10 @@ public class MindController {
 		HashMap<String, PickedArticle> pickedArticles = articleObject.getMap();
 		
 		boolean loggedIn = Methods.checkLogin(session);
-		
+		Integer keywordIndex = (Integer)session.getAttribute("keyword");
 		//Store article keyword - (currently grabs random)
-		String keyword = keywords[Math.abs((int)(Math.random() * keywords.length))];
-		
+		//String keyword = keywords[Math.abs((int)(Math.random() * keywords.length))];
+		String keyword = questionAnswers[keywordIndex];
 		
 		//test
 //		System.out.println(keyword);
@@ -97,7 +97,7 @@ public class MindController {
 		
 		Article article = newsService.getAArticleByKeyword(keyword);
 	    model.addAttribute("article", article);
-		System.out.println(article.toString());
+		//System.out.println(article.toString());
 	    //Testing area - datetime stuff
 	    
 	    //Format datetime
