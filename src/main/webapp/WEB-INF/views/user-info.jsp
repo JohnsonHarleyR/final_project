@@ -55,6 +55,12 @@
 <p>
 <b>First name: </b> ${user.name}
 </p>
+<p>
+<b>Music Preferences: </b> ${user.name}
+</p>
+<p>
+<b>: </b> ${user.name}
+</p>
 
 <p id="sub">
 <a href="/user/edit" id="btnedit"><button type="button" id="btnsub"

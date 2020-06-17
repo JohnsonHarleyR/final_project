@@ -442,7 +442,7 @@ public class HomeController {
 		//set whether user is logged in or not
 		session.setAttribute("loggedIn", loggedIn);
 
-		return "redirect:/";
+		return "redirect:/dailycheckin";
 	}
 
 	// Logout
@@ -555,7 +555,7 @@ public class HomeController {
 	public String userSettings(Model model) {
 
 		User user = (User) session.getAttribute("user");
-		
+		UserPreferences userPreferences = (UserPreferences) session.getAttribute("userPreferences");
 		//Check if user is logged in, set as variable
 		boolean loggedIn = Methods.checkLogin(session);
 		
@@ -574,6 +574,7 @@ public class HomeController {
 		model.addAttribute("loggedin", loggedIn);
 		model.addAttribute("password", hiddenPass);
 		model.addAttribute("message", infoMessage);
+		model.addAttribute("userPreferences",userPreferences);
 		
 		session.setAttribute("loggedIn", loggedIn);
 		
@@ -684,8 +685,8 @@ public class HomeController {
 	}
 	//Submits the user questionnaire information to the database and redirects to the user info
 	@PostMapping("/questionaire")
-	public String saveAndDistributeQuestionaireValues(@RequestParam(value="userId") Long userId, @RequestParam(value="mentalHealth[]") String[] mentalHealth, @RequestParam(value="musicPreferences[]") String[] musicGenres,
-			@RequestParam(value="bodyGoalText") String bodyGoalText, @RequestParam(value="userWeight") Integer userWeight,
+	public String saveAndDistributeQuestionaireValues(@RequestParam(value="userId") Long userId, @RequestParam(value="mentalHealth[]") String[] mentalHealth,
+			@RequestParam(value="musicPreferences[]") String[] musicGenres, @RequestParam(value="userWeight") Integer userWeight,
 			@RequestParam(value="userGoalWeight", required = false) Integer userGoalWeight) {
 		
 		// creating a string to store in the database, separated by ,
@@ -695,16 +696,8 @@ public class HomeController {
 		//creating a new instance of UserPreferences to store in the database for the current user
 		UserPreferences userPreferences = new UserPreferences();
 		userPreferences.setUserId(userId);
-		userPreferences.setBodyGoalText(bodyGoalText);
 		userPreferences.setUserWeight(userWeight);
-		
-		// Logic to save a goal weight if a user wants to maintain weight, goal weight should be stored as user current weight
-		if(bodyGoalText != "I Want To Maintain My Current Weight") {
-			userPreferences.setUserGoalWeight(userGoalWeight);
-		}
-		else {
-			userPreferences.setUserGoalWeight(userWeight);
-		}
+		userPreferences.setUserGoalWeight(userGoalWeight);
 		
 		// since the mental health boxes info comes in as a array the values have to be iterated through
 		// and added to a new string to store
@@ -722,14 +715,16 @@ public class HomeController {
 		userPreferences.setMusicGenrePreferences(allMusicGenrePreferences);
 		
 		preferencesRepo.save(userPreferences);
-		return "redirect:/user-info";
+		
+		session.setAttribute("userPreferences", userPreferences);
+		return "redirect:/dailycheckin";
 		
 	}
 	
 	//daily questionaire controller , may want to put all the questionaire stuff in it's own controller
 	// but i'll put it here for now 
 	
-	@RequestMapping("/dailyCheckIn")
+	@RequestMapping("/dailycheckin")
 	public String displayDailyCheckInQuestionaire(Model model){
 	
 		User user = (User) session.getAttribute("user");
@@ -741,7 +736,7 @@ public class HomeController {
 		
 		return "daily-user-questionaire";
 	}
-	@PostMapping("/dailyCheckIn")
+	@PostMapping("/dailycheckin")
 	public String saveDailyResults(@RequestParam (value = "userId") Long userId, @RequestParam (value="feelings") String feeling, 
 			@RequestParam (value = "workoutFocus") Integer workoutFocus, @RequestParam (value = "interests") Integer interest) {
 				
@@ -753,8 +748,10 @@ public class HomeController {
 		dailyQuestion.setInterest(interest);
 		
 		dailyQuestionsRepo.save(dailyQuestion);
-		
-		return "redirect:/user-info";
+		session.setAttribute("catagory", workoutFocus);
+		session.setAttribute("keyword", interest);
+		session.setAttribute("dailyQuestion", dailyQuestion);
+		return "redirect:/";
 		
 	}
 	

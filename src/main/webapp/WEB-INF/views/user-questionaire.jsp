@@ -16,6 +16,7 @@
 
 <form method="post">
 <input name= "userId" type="hidden" value="${user.id}" >
+
 <%-- Mental Health Question --%>
 
   <div class="form-group" id = "mentalHealthQuestion">
@@ -90,30 +91,20 @@
 </div>
 </div>
 
-<%-- Body Goals (Gaining/Maintaining/Losing) --%>
 
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">How would you like to change your body?</label>
-    <select name="bodyGoalText"class="form-control" id="FormControlSelect1">
-      <option>I Want To Lose Weight</option>
-      <option>I Want To Gain Weight</option>
-      <option>I Want To Maintain My Current Weight</option>
-    </select>
-  </div>
+
   <%-- User Current Body Weight --%>
 <div class="form-group">
     <label for="FormControlInput2" >How much do you weigh currently?</label>
     <input type="text" name="userWeight" class="form-control" id="FormControlInput2">
   </div>
   
-  <%-- THIS QUESTION WILL ONLY DISPLAY IF THEY WANT TO GAIN OR LOSE WEIGHT--%>
-  <c:if test="${bodyGoalText != 'I Want To Maintain My Current Weight'}" >
+ 
+ <%-- User Current Body Weight Goal --%>
   <div class="form-group">
     <label for="FormControlInput3" >What is your goal weight?</label>
     <input type="text" name="userGoalWeight" class="form-control" id="FormControlInput3">
   </div>
-  </c:if>
- 
  
  <button type="submit" class="btn btn-primary">Submit</button>
 

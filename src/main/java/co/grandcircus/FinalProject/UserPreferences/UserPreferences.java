@@ -17,7 +17,6 @@ public class UserPreferences {
 	private Integer userWeight;
 	private String mentalIllnesses;
 	private String musicGenrePreferences;
-	private String bodyGoalText;
 	private Integer userGoalWeight;
 	
 	@Column(name = "user_id")
@@ -34,7 +33,6 @@ public class UserPreferences {
 		this.userWeight = userWeight;
 		this.mentalIllnesses = mentalIllnesses;
 		this.musicGenrePreferences = musicGenrePreferences;
-		this.bodyGoalText = bodyGoalText;
 		this.userGoalWeight = userGoalWeight;
 		this.userId = userId;
 	}
@@ -73,13 +71,6 @@ public class UserPreferences {
 		this.musicGenrePreferences = musicGenrePreferences;
 	}
 
-	public String getBodyGoalText() {
-		return bodyGoalText;
-	}
-
-	public void setBodyGoalText(String bodyGoalText) {
-		this.bodyGoalText = bodyGoalText;
-	}
 
 	public Integer getUserGoalWeight() {
 		return userGoalWeight;
@@ -100,7 +91,7 @@ public class UserPreferences {
 	@Override
 	public String toString() {
 		return "UserPreferences [id=" + id + ", userWeight=" + userWeight + ", mentalIllnesses=" + mentalIllnesses
-				+ ", musicGenrePreferences=" + musicGenrePreferences + ", bodyGoalText=" + bodyGoalText
+				+ ", musicGenrePreferences=" + musicGenrePreferences 
 				+ ", userGoalWeight=" + userGoalWeight + ", userId=" + userId + "]";
 	}
 	

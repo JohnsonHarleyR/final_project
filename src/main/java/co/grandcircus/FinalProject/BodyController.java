@@ -57,8 +57,12 @@ public class BodyController {
 	public String body(Model model) {
 
 		boolean loggedIn = Methods.checkLogin(session);
-
-		List<Results> resultList = workoutService.getWorkout();
+		Integer category = (Integer) session.getAttribute("category");
+		if (category == null) {
+			category = 10;
+		}
+		
+		List<Results> resultList = workoutService.getWorkout(category);
 		
 		model.addAttribute("resultList", resultList);
 		model.addAttribute("loggedin", loggedIn);
