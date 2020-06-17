@@ -56,8 +56,8 @@ public class SoulController {
 		
 		//Kitten Stuff!
 		//Get 2 random numbers
-		int wi = (int)(Math.random() * 400 + 200);
-		int he = (int)(Math.random() * 400 + 200);
+		int wi = (int)(Math.random() * 450 + 200);
+		int he = (int)(Math.random() * 450 + 200);
 		model.addAttribute("wi", wi);
 		model.addAttribute("he", he);
 		
