@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.grandcirculs.PickedArticles.PickedArticle;
+import co.grandcirculs.PickedArticles.PickedArticles;
 import co.grandcircus.FinalProject.ArticleApi.ArticleService;
-import co.grandcircus.FinalProject.ArticleApi.Result;
 import co.grandcircus.FinalProject.Favorites.ArticleDao;
-import co.grandcircus.FinalProject.Favorites.FavAffirmation;
 import co.grandcircus.FinalProject.Favorites.FavArticle;
 import co.grandcircus.FinalProject.NewsApi.Article;
 import co.grandcircus.FinalProject.NewsApi.NewsApiService;
@@ -20,6 +20,7 @@ import co.grandcircus.FinalProject.User.UserDao;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -43,6 +44,7 @@ public class MindController {
 	
 	@Autowired
 	private UserDao userRepo;
+	
 	
 	// List of possible choices from daily user questionaire
 	private String[] questionAnswers = { "top headlines","spirituality","overcoming struggle",
@@ -70,10 +72,9 @@ public class MindController {
 	@RequestMapping("/mind")
 	public String mindPage(Model model) {
 		
-		//Topic Ids - test 
-		//Depression 5504
-		//Mental Health 5898
-		
+		//Get chosen articles
+		PickedArticles articleObject = new PickedArticles();
+		HashMap<String, PickedArticle> pickedArticles = articleObject.getMap();
 		
 		boolean loggedIn = Methods.checkLogin(session);
 		
@@ -115,6 +116,13 @@ public class MindController {
 	    //(Do I have to use separate ones, or is there a way to skip line in formatter?)
         String formatted = sdf.format(timestamp);
 		model.addAttribute("ftime", formatted);
+		
+		
+		//Add picked articles to page
+		for (String a: pickedArticles.keySet()) {
+			model.addAttribute(a, pickedArticles.get(a));
+		}
+		
 	    
 	    //User stuff
 		model.addAttribute("loggedin", loggedIn);

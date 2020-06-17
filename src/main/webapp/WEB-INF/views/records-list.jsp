@@ -30,7 +30,7 @@
 	<h1>List of Records</h1>
 	<a href="/user">Go back</a>
 	
-	<h2>Happy Reminders</h2>
+	<h2>Add a Happy Reminder</h2>
 	One way to stay positive is to record what makes you feel happy. This could be an event, 
 	a compliment from a stranger, or an uplifting saying.<br> 
 	Whatever it may be, record it here for when you need a 
