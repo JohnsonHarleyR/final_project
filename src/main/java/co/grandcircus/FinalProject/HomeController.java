@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import co.grandcircus.FinalProject.DailyQuestions.DailyUserQuestions;
+import co.grandcircus.FinalProject.DailyQuestions.DailyUserQuestionsDao;
 import co.grandcircus.FinalProject.Favorites.AffirmationDao;
 import co.grandcircus.FinalProject.Favorites.ArticleDao;
 import co.grandcircus.FinalProject.Favorites.ExerciseDao;
@@ -26,6 +28,8 @@ import co.grandcircus.FinalProject.Favorites.RecordDao;
 import co.grandcircus.FinalProject.QuoteApi.QuoteService;
 import co.grandcircus.FinalProject.User.User;
 import co.grandcircus.FinalProject.User.UserDao;
+import co.grandcircus.FinalProject.UserPreferences.UserPreferences;
+import co.grandcircus.FinalProject.UserPreferences.UserPreferencesDao;
 
 
 //Figure out why the error messages stay there after logging in
@@ -53,6 +57,12 @@ public class HomeController {
 	
 	@Autowired
 	private RecordDao recordRepo;
+	
+	@Autowired
+	private UserPreferencesDao preferencesRepo;
+	
+	@Autowired
+	private DailyUserQuestionsDao dailyQuestionsRepo;
 
 	private String loginMessage = "Please enter your username or e-mail and password.";
 	private String signUpMessage = "Please enter the following information.";
@@ -512,7 +522,7 @@ public class HomeController {
 			//Doing this repeatedly to make session last longer
 			session.setAttribute("user", user);
 			
-			return "redirect:/user-info";
+			return "redirect:/questionaire";
 
 		}
 	}
@@ -541,7 +551,7 @@ public class HomeController {
 	}
 
 	// User info page
-	@RequestMapping("/settings")
+	@RequestMapping("/user-info")
 	public String userSettings(Model model) {
 
 		User user = (User) session.getAttribute("user");
@@ -660,23 +670,93 @@ public class HomeController {
 		
 	}
 	
+	// Takes user to the questionnaire page 
 	@RequestMapping("/questionaire")
-	public String displayUserQuestionaire() {
+	public String displayUserQuestionaire(Model model) {
+		// getting and setting the user attribute to make the session last as long as possible 
+		// and allows the user Id to be passed to the model 
+		User user = (User) session.getAttribute("user");
+		session.setAttribute("user", user);
 		
-		
-		
+		model.addAttribute("user",user);
 		return "user-questionaire";
 		
 	}
+	//Submits the user questionnaire information to the database and redirects to the user info
 	@PostMapping("/questionaire")
-	public String saveAndDistributeQuestionaireValues(@RequestParam(value="mentalHealth") List<String> mentalHealth, @RequestParam(value="musicQuestion") List<String> musicGenres,
-			@RequestParam(value="weightGoalText") String weightGoalText, @RequestParam(value="userWeight") Integer userWeight,
+	public String saveAndDistributeQuestionaireValues(@RequestParam(value="userId") Long userId, @RequestParam(value="mentalHealth[]") String[] mentalHealth, @RequestParam(value="musicPreferences[]") String[] musicGenres,
+			@RequestParam(value="bodyGoalText") String bodyGoalText, @RequestParam(value="userWeight") Integer userWeight,
 			@RequestParam(value="userGoalWeight", required = false) Integer userGoalWeight) {
 		
+		// creating a string to store in the database, separated by ,
+		String allMentalIlnesses = "";
+		String allMusicGenrePreferences = "";
 		
+		//creating a new instance of UserPreferences to store in the database for the current user
+		UserPreferences userPreferences = new UserPreferences();
+		userPreferences.setUserId(userId);
+		userPreferences.setBodyGoalText(bodyGoalText);
+		userPreferences.setUserWeight(userWeight);
+		
+		// Logic to save a goal weight if a user wants to maintain weight, goal weight should be stored as user current weight
+		if(bodyGoalText != "I Want To Maintain My Current Weight") {
+			userPreferences.setUserGoalWeight(userGoalWeight);
+		}
+		else {
+			userPreferences.setUserGoalWeight(userWeight);
+		}
+		
+		// since the mental health boxes info comes in as a array the values have to be iterated through
+		// and added to a new string to store
+		for(String mentalIllness: mentalHealth) {
+			
+			allMentalIlnesses += mentalIllness + ",";
+		}
+		userPreferences.setMentalIllnesses(allMentalIlnesses);
+		
+		for(String musicGenre: musicGenres) {
+			
+			allMusicGenrePreferences += musicGenre + ",";
+		}
+		
+		userPreferences.setMusicGenrePreferences(allMusicGenrePreferences);
+		
+		preferencesRepo.save(userPreferences);
+		return "redirect:/user-info";
+		
+	}
+	
+	//daily questionaire controller , may want to put all the questionaire stuff in it's own controller
+	// but i'll put it here for now 
+	
+	@RequestMapping("/dailyCheckIn")
+	public String displayDailyCheckInQuestionaire(Model model){
+	
+		User user = (User) session.getAttribute("user");
+		session.setAttribute("user", user);
+		
+		model.addAttribute("user",user);
+		
+		
+		
+		return "daily-user-questionaire";
+	}
+	@PostMapping("/dailyCheckIn")
+	public String saveDailyResults(@RequestParam (value = "userId") Long userId, @RequestParam (value="feelings") String feeling, 
+			@RequestParam (value = "workoutFocus") Integer workoutFocus, @RequestParam (value = "interests") Integer interest) {
+				
+		DailyUserQuestions dailyQuestion = new DailyUserQuestions();
+		
+		dailyQuestion.setUserId(userId);
+		dailyQuestion.setFeelings(feeling);
+		dailyQuestion.setWorkoutFocus(workoutFocus);
+		dailyQuestion.setInterest(interest);
+		
+		dailyQuestionsRepo.save(dailyQuestion);
 		
 		return "redirect:/user-info";
 		
 	}
+	
 	
 }

@@ -11,11 +11,12 @@
 <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
-<form>
 
+<form>
+<input name= "userId" type="hidden" value="${user.id}" >
  <div class="form-group">
-    <label for="\FormControlSelect1">How are you feeling today?</label>
-    <select class="form-control" id="FormControlSelect1">
+    <label for="FormControlSelect1">How are you feeling today?</label>
+    <select name= "feelings" class="form-control" id="FormControlSelect1">
       <option>Happy</option>
       <option>Sad</option>
       <option>Un-Motivated</option>
@@ -28,50 +29,54 @@
 <div class="form-group" id="excerciseFocusOptions">
 <label for="excerciseFocusOptions" >What part of your body would you like to work on today?</label>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="9" >
-  <label class="form-check-label" for="exampleRadios1">
+  <input class="form-check-input" type="radio" name="workoutFocus" id="radios1" value="9" >
+  <label class="form-check-label" for="radios1">
    Legs
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="14">
-  <label class="form-check-label" for="exampleRadios2">
+  <input class="form-check-input" type="radio" name="workoutFocus" id="radios2" value="14">
+  <label class="form-check-label" for="radios2">
    Calves
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="11" >
-  <label class="form-check-label" for="exampleRadios3">
+  <input class="form-check-input" type="radio" name="workoutFocus" id="radios3" value="11" >
+  <label class="form-check-label" for="radios3">
    Chest
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="12" >
-  <label class="form-check-label" for="exampleRadios3">
+  <input class="form-check-input" type="radio" name="workoutFocus" id="radios4" value="12" >
+  <label class="form-check-label" for="radios4">
    Back
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="13" >
-  <label class="form-check-label" for="exampleRadios3">
+  <input class="form-check-input" type="radio" name="workoutFocus" id="radios5" value="13" >
+  <label class="form-check-label" for="radios5">
    Shoulders
   </label>
   </div>
   <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="null" >
-  <label class="form-check-label" for="exampleRadios3">
+  <input class="form-check-input" type="radio" name="workoutFocus" id="radios6" value="null" >
+  <label class="form-check-label" for="radios6">
    Not Working Out Today
   </label>
 </div>
 </div>
 
-<%-- Want to add question specifically pertaining to what news they want to see, if any at all --%>
-<%-- 
+<%--Question ties into the mind page for display of an article --%>
 <div class="form-group">
-
-
+    <label for="FormControlSelect2">What topics are you interested in today?</label>
+    <select name= "interests" class="form-control" id="FormControlSelect2">
+      <option value = "0">Top Headlines</option>
+      <option value = "1">Spirituality</option>
+      <option value = "2">Overcoming Struggle</option>
+      <option value = "3">Mental Health</option>
+      <option value = "4">Meditation</option>
+    </select>
 </div>
---%>
 
 <button type="submit" class="btn btn-primary">Submit</button>
 </form>

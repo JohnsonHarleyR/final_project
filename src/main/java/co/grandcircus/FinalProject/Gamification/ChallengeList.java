@@ -21,13 +21,24 @@ public class ChallengeList {
 	private String name;
 	private String description;
 	private Long pointsReq;
-	private Date date;
-	private Date experationDate;
+	private Date datetime;
 	private String category;
 	private String prizeUrl;
 	@ManyToOne
 	private User user;
 	
+	public ChallengeList(String name, String description, Long pointsReq, Date datetime, String category,
+			String prizeUrl, User user) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.pointsReq = pointsReq;
+		this.datetime = datetime;
+		this.category = category;
+		this.prizeUrl = prizeUrl;
+		this.user = user;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -72,22 +83,6 @@ public class ChallengeList {
 		this.pointsReq = pointsReq;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public String getExperationDate() {
-		return experationDate;
-	}
-
-	public void setExperationDate(Date experation) {
-		this.experationDate = experation;
-	}
-
 	public String getCategory() {
 		return category;
 	}
@@ -102,6 +97,14 @@ public class ChallengeList {
 
 	public void setPrizeUrl(String prizeUrl) {
 		this.prizeUrl = prizeUrl;
+	}
+
+	public Date getDatetime() {
+		return datetime;
+	}
+
+	public void setDatetime(Date datetime) {
+		this.datetime = datetime;
 	}
 
 }

@@ -33,7 +33,21 @@
 	<input type="hidden" name ="name" value="${exercise.name}"/>
 	<button type="submit">Save</button>
 </form>
+<form action="/complete/workout" method="post">	
+	<button type="submit">I did this</button>
+</form>
 </c:forEach>
+
+<form action = "/bodyfood" name = "foodForm" method = "post">
+	
+	          <textarea name = "userInput" rows = "3" cols = "80">Your text here</textarea>
+					<input type="submit" value="Submit">
+	
+</form>
+<c:forEach var= "foods" items="${food}">
+<h2>Calories: ${foods.nf_calories}</h2>
+</c:forEach>
+
 
 <c:forEach var= "result" items="${resultList}">
 <h3>${result.name}</h3>
